@@ -2,642 +2,291 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>NYPD General Trading — Modern Rewrite</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NYPD General Trading — Modern Bootstrap Redesign</title>
 
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <style>
-        .img-no-crop {
-            max-width: 100% !important;
-            height: auto !important;
-        }
+  <style>
+    :root {
+      --primary: #20c997; /* light coral green */
+      --secondary: #f8fdfb;
+      --text-dark: #083b2c;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--secondary);
+      color: var(--text-dark);
+    }
 
-        :root {
-            --bg: #f7f9fb;
-            --card: #ffffff;
-            --text: #0f1723;
-            --muted: #6b7280;
-            /* colours inspired by original: navy / light-blue / warm orange */
-            --navy: #072b57;
-            /* deep navy */
-            --light-blue: #cfe9fb;
-            /* soft light-blue */
-            --accent: #f28b2a;
-            /* warm orange */
-            --glass: rgba(255, 255, 255, 0.6);
-            --radius: 14px;
-            --shadow: 0 8px 30px rgba(12, 20, 40, 0.08);
-        }
+    .navbar {
+      background: var(--primary);
+    }
 
-        * {
-            box-sizing: border-box
-        }
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+    }
 
-        html,
-        body {
-            height: 100%
-        }
+    .navbar-brand:hover,
+    .navbar-nav .nav-link:hover {
+      opacity: 0.9;
+    }
 
-        body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: linear-gradient(180deg, var(--bg), #eef6ff);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.45;
-        }
+    .btn-primary {
+      background-color: var(--primary);
+      border: none;
+      border-radius: 50px;
+    }
 
-        /* Header */
-        header {
-            background: linear-gradient(90deg, rgba(7, 43, 87, 0.95), rgba(6, 35, 72, 0.95));
-            color: #fff;
-            padding: 18px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            box-shadow: 0 4px 18px rgba(7, 43, 87, 0.12);
-        }
+    .btn-primary:hover {
+      background-color: #1cb387;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            letter-spacing: 0.6px;
-        }
+    .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .logo .mark {
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            background: linear-gradient(180deg, var(--accent), #ffb86b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 800;
-            font-size: 18px;
-            box-shadow: 0 6px 18px rgba(242, 139, 42, 0.18);
-        }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
 
-        nav a {
-            color: rgba(255, 255, 255, 0.92);
-            text-decoration: none;
-            margin-left: 18px;
-            font-weight: 600;
-            font-size: 15px;
-        }
+    footer {
+      background-color: var(--primary);
+      color: #fff;
+    }
 
-        /* Hero */
-        .hero {
-            max-width: 1200px;
-            margin: 28px auto;
-            padding: 36px;
-            border-radius: var(--radius);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.58));
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 24px;
-            align-items: center;
-            box-shadow: var(--shadow);
-        }
+    .carousel-item img {
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
 
-        .hero .eyebrow {
-            display: inline-block;
-            padding: 6px 12px;
-            background: var(--light-blue);
-            color: var(--navy);
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-
-        .hero h1 {
-            margin: 0 0 12px 0;
-            font-size: 32px;
-            color: var(--navy);
-        }
-
-        .hero p {
-            margin: 0 0 20px;
-            color: var(--muted);
-            font-size: 15px
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 8px 24px rgba(242, 139, 42, 0.14);
-        }
-
-        .hero .features {
-            margin-top: 18px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        .feature {
-            background: #fff;
-            padding: 10px 12px;
-            border-radius: 10px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            box-shadow: 0 6px 18px rgba(12, 20, 40, 0.04)
-        }
-
-        .feature b {
-            font-size: 14px
-        }
-
-        .hero-right {
-            border-radius: 12px;
-            overflow: hidden;
-            background: linear-gradient(180deg, #fff, #f4fbff);
-            border: 1px solid rgba(7, 43, 87, 0.04);
-            padding: 18px;
-        }
-
-        .hero-right img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 8px
-        }
-
-        /* Products / Services */
-        .section {
-            max-width: 1200px;
-            margin: 28px auto;
-            padding: 8px 18px 48px 18px;
-        }
-
-        .section h2 {
-            color: var(--navy);
-            margin: 0 0 8px 0;
-            font-size: 22px
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-            margin-top: 18px;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: var(--shadow);
-            transition: transform .22s ease, box-shadow .22s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(12, 20, 40, 0.12)
-        }
-
-        .card img {
-            height: 160px;
-            object-fit: cover;
-            border-radius: 8px;
-            width: 100%
-        }
-
-        .card h3 {
-            margin: 0;
-            font-size: 16px;
-            color: var(--navy)
-        }
-
-        .card p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px
-        }
-
-        .card .meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto
-        }
-
-        .pill {
-            background: var(--light-blue);
-            color: var(--navy);
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 13px
-        }
-
-        /* Contact */
-        .contact {
-            margin-top: 18px;
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 18px;
-        }
-
-        form {
-            background: var(--card);
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: var(--shadow)
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: var(--muted)
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(12, 20, 40, 0.06);
-            font-size: 14px;
-            margin-bottom: 12px;
-            background: linear-gradient(180deg, #fff, #fbfeff);
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical
-        }
-
-        .map-card {
-            background: linear-gradient(180deg, #fff, #f7fbff);
-            padding: 16px;
-            border-radius: 12px;
-            box-shadow: var(--shadow)
-        }
-
-        .footer {
-            margin-top: 36px;
-            padding: 28px;
-            background: linear-gradient(180deg, rgba(7, 43, 87, 0.04), rgba(7, 43, 87, 0.02));
-            color: var(--muted);
-            display: flex;
-            justify-content: space-between;
-            gap: 18px;
-            flex-wrap: wrap;
-            border-top: 1px solid rgba(7, 43, 87, 0.03);
-        }
-
-        /* Responsive */
-        @media (max-width:920px) {
-            .hero {
-                grid-template-columns: 1fr
-            }
-
-            .contact {
-                grid-template-columns: 1fr
-            }
-
-            header {
-                padding: 14px
-            }
-
-            .hero-right img {
-                height: 220px
-            }
-        }
-
-        @media (max-width:520px) {
-            .logo .text {
-                display: none
-            }
-
-            nav a {
-                margin-left: 10px;
-                font-size: 14px
-            }
-
-            .hero h1 {
-                font-size: 24px
-            }
-        }
-    </style>
+    .carousel-item img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">
-            <div class="mark">N</div>
-            <div class="text">
-                <div style="font-size:15px">NYPD</div>
-                <div style="font-size:12px;opacity:.86">General Trading — Bahrain</div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">NYPD General Trading</a>
+      <button class="navbar-toggler bg-white border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="py-5" id="home">
+    <div class="container d-flex flex-column flex-lg-row align-items-center gap-4">
+      <div class="col-lg-6">
+        <h6 class="text-uppercase fw-bold text-primary mb-2">Established 2010</h6>
+        <h1 class="fw-bold mb-3">Importers & Exporters — Assistive Tech & Office Solutions</h1>
+        <p class="text-muted mb-4">
+          We supply braille embossers, assistive technology, labeling systems, and document solutions to
+          government, education, and corporate customers across Bahrain and the GCC.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
+            <span class="me-2 text-primary fw-bold">•</span>
+            <div>
+              <div class="fw-bold small">Authorized Distributors</div>
+              <small class="text-muted">Leading global brands</small>
             </div>
+          </div>
+          <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
+            <span class="me-2 text-success fw-bold">✓</span>
+            <div>
+              <div class="fw-bold small">Service & Support</div>
+              <small class="text-muted">Local setup & maintenance</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <div class="card p-3">
+          <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
+            alt="Braille embosser and assistive tech" class="img-fluid rounded mb-3" />
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="fw-semibold mb-0">Braillo & HumanWare Solutions</h5>
+              <small class="text-muted">High-volume tactile printers and devices</small>
+            </div>
+            <span class="badge bg-success rounded-pill">GCC Wide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="py-5 bg-white" id="products">
+    <div class="container">
+      <h2 class="fw-bold mb-3 text-center text-primary">Featured Products</h2>
+      <p class="text-center text-muted mb-5">A curated selection</p>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg" class="card-img-top"
+              alt="Braillo Embosser">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">BRAILLO Tactile Embosser</h5>
+              <p class="card-text text-muted">High-speed, industrial embosser for mass production of braille and tactile
+                graphics.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge bg-light text-dark border">High Volume</span>
+                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#products">Products</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero" id="home" aria-labelledby="hero-heading">
-            <div>
-                <span class="eyebrow">Established 2010</span>
-                <h1 id="hero-heading">Importers & Exporters — Assistive Tech & Office Solutions</h1>
-                <p>We supply braille embossers, assistive technology, labeling systems and document solutions to
-                    government, education and corporate customers across Bahrain and the GCC.</p>
-
-                <div class="features" aria-hidden="false">
-                    <div class="feature">
-                        <div style="font-weight:800;color:var(--accent)">•</div>
-                        <div><b>Authorized Distributors</b>
-                            <div style="font-size:12px;color:var(--muted)">Leading global brands</div>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div style="font-weight:800;color:var(--navy)">✓</div>
-                        <div><b>Service & Support</b>
-                            <div style="font-size:12px;color:var(--muted)">Local setup & maintenance</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div style="margin-top:18px">
-                    <a class="btn" href="#products">View Products</a>
-                </div> -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png" class="card-img-top"
+              alt="HumanWare devices">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">HumanWare Assistive Devices</h5>
+              <p class="card-text text-muted">Portable readers, magnifiers, and accessible tablets for students and
+                professionals.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge bg-light text-dark border">Education</span>
+                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <aside class="hero-right" aria-hidden="false">
-                <!-- example product / hero image (replace with real image URLs) -->
-                <img class="img-no-crop" src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
-                    alt="Braille embosser and assistive tech">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
-                    <div>
-                        <div style="font-weight:700;color:var(--navy);font-size:16px">Braillo & HumanWare Solutions
-                        </div>
-                        <div style="font-size:13px;color:var(--muted)">High-volume tactile printers and
-                            devices</div>
-                    </div>
-                    <div class="pill">GCC Wide</div>
-                </div>
-            </aside>
-        </section>
-
-        <section class="section" id="products">
-            <h2>Featured Products</h2>
-            <p style="margin:6px 0 0 0;color:var(--muted)">A curated selection</p>
-
-            <div class="grid" role="list">
-                <article class="card" role="listitem">
-                    <img class="img-no-crop"
-                        src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg"
-                        alt="Braillo Embosser">
-                    <h3>BRAILLO Tactile Embosser</h3>
-                    <p>High-speed, industrial embosser for mass production of braille and tactile graphics.</p>
-                    <div class="meta">
-                        <span class="pill">High Volume</span>
-                        <a class="btn" href="#contact"
-                            style="background:transparent;color:var(--navy);border:1px solid rgba(7,43,87,0.08);box-shadow:none;padding:8px 12px">Enquire</a>
-                    </div>
-                </article>
-
-                <article class="card" role="listitem">
-                    <img class="img-no-crop"
-                        src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png"
-                        alt="HumanWare devices">
-                    <h3>HumanWare Assistive Devices</h3>
-                    <p>Portable readers, magnifiers and accessible tablets for students and professionals.</p>
-                    <div class="meta">
-                        <span class="pill">Education</span>
-                        <a class="btn" href="#contact"
-                            style="background:transparent;color:var(--navy);border:1px solid rgba(7,43,87,0.08);box-shadow:none;padding:8px 12px">Enquire</a>
-                    </div>
-                </article>
-
-                <article class="card" role="listitem">
-                    <img class="img-no-crop"
-                        src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
-                        alt="Index Braille printers">
-                    <h3>Index Braille Printers</h3>
-                    <p>Reliable desktop braille printers for institutions and small offices.</p>
-                    <div class="meta">
-                        <span class="pill">Desktop</span>
-                        <a class="btn" href="#contact"
-                            style="background:transparent;color:var(--navy);border:1px solid rgba(7,43,87,0.08);box-shadow:none;padding:8px 12px">Enquire</a>
-                    </div>
-                </article>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
+              class="card-img-top" alt="Index Braille printers">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">Index Braille Printers</h5>
+              <p class="card-text text-muted">Reliable desktop braille printers for institutions and small offices.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge bg-light text-dark border">Desktop</span>
+                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="section" id="services">
-            <h2>Services</h2>
-            <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-                <div class="card" style="min-width:260px;flex:1">
-                    <h3>Installation & Training</h3>
-                    <p>On-site setup, staff training and documentation to ensure fast adoption.</p>
-                </div>
-                <div class="card" style="min-width:260px;flex:1">
-                    <h3>Maintenance & Support</h3>
-                    <p>Local technical support and preventive maintenance packages.</p>
-                </div>
-                <div class="card" style="min-width:260px;flex:1">
-                    <h3>Custom Solutions</h3>
-                    <p>Project-based solutions for education, government, and enterprise customers.</p>
-                </div>
+  <!-- Services -->
+  <section class="py-5" id="services">
+    <div class="container">
+      <h2 class="fw-bold mb-4 text-center text-primary">Services</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <h5 class="fw-bold mb-2">Installation & Training</h5>
+            <p class="text-muted">On-site setup, staff training, and documentation to ensure fast adoption.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <h5 class="fw-bold mb-2">Maintenance & Support</h5>
+            <p class="text-muted">Local technical support and preventive maintenance packages.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <h5 class="fw-bold mb-2">Custom Solutions</h5>
+            <p class="text-muted">Project-based solutions for education, government, and enterprise customers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Carousel -->
+  <section class="py-5 bg-light" id="gallery">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-4 text-primary">Our Partners</h2>
+      <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row g-3 justify-content-center">
+              <div class="col-6 col-md-3"><img src="static/2020/2020/10/National-Guard-300x300.png"
+                  class="img-fluid shadow-sm" alt=""></div>
+              <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOI-300x300.png"
+                  class="img-fluid shadow-sm" alt=""></div>
+              <div class="col-6 col-md-3"><img src="static/2020/2020/10/Bapco-300x236.png"
+                  class="img-fluid shadow-sm" alt=""></div>
+              <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOH-300x300.png"
+                  class="img-fluid shadow-sm" alt=""></div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="section" id="gallery">
-            <h2 class="text-center mb-4">Our Partners</h2>
+  <!-- Contact -->
+  <section class="py-5" id="contact">
+    <div class="container">
+      <h2 class="fw-bold mb-4 text-center text-primary">Contact & Inquiries</h2>
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <h5 class="fw-bold mb-2">Visit Us</h5>
+            <p class="text-muted">NYPD General Trading, Bahrain — Authorized distributors for assistive tech and
+              document solutions.<br>
+              Tel: +973 1234 5678 • Email: info@nypd-bh.com</p>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7859400558946!2d50.53718366264738!3d26.2361440370935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a568d0b543f1%3A0x8a6a11c87c2484c0!2sNYPD%20General%20Trading!5e0!3m2!1sen!2sin!4v1761737670956!5m2!1sen!2sin"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <!-- Bootstrap Carousel Container -->
-            <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                <div class="carousel-inner d-flex">
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div>
+        <strong>NYPD General Trading — Bahrain</strong>
+        <p class="small mb-0">Importers & distributors of assistive technology, braille systems & office solutions.</p>
+      </div>
+      <div class="text-end">
+        <small>© <span id="year"></span> NYPD General Trading</small><br>
+        <small>Manama, Bahrain • <a href="#contact" class="text-white text-decoration-none fw-semibold">Contact</a></small>
+      </div>
+    </div>
+  </footer>
 
-                    <!-- Each "carousel-item" holds 4 images at once -->
-                    <div class="carousel-item active">
-                        <div class="row gx-3">
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/National-Guard-300x300.png"
-                                    class="img-fluid rounded shadow-sm" alt="Image 1"></div>
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOI-300x300.png"
-                                    class="img-fluid rounded shadow-sm" alt="Image 2"></div>
-                            <div class="col-6 col-md-3 img-no-crop"><img src="static/2020/2020/10/Bapco-300x236.png"
-                                    class="img-fluid rounded shadow-sm" alt="Image 3"></div>
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOH-300x300.png"
-                                    class="img-fluid rounded shadow-sm" alt="Image 4"></div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="carousel-item">
-                        <div class="row gx-3">
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=5"
-                                    class="img-fluid rounded shadow-sm" alt="Image 5"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=6"
-                                    class="img-fluid rounded shadow-sm" alt="Image 6"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=7"
-                                    class="img-fluid rounded shadow-sm" alt="Image 7"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=8"
-                                    class="img-fluid rounded shadow-sm" alt="Image 8"></div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="row gx-3">
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=9"
-                                    class="img-fluid rounded shadow-sm" alt="Image 9"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="hhttps://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=10"
-                                    class="img-fluid rounded shadow-sm" alt="Image 10"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=1"
-                                    class="img-fluid rounded shadow-sm" alt="Image 1 repeat"></div>
-                            <div class="col-6 col-md-3"><img
-                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=2"
-                                    class="img-fluid rounded shadow-sm" alt="Image 2 repeat"></div>
-                        </div>
-                    </div> -->
-
-                </div>
-
-                <!-- Navigation buttons -->
-                <!-- <button class="carousel-control-prev custom-carousel-btn" type="button"
-                    data-bs-target="#galleryCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next custom-carousel-btn" type="button"
-                    data-bs-target="#galleryCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button> -->
-            </div>
-        </section>
-
-        <section class="section" id="contact" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Contact & Inquiries</h2>
-            <div class="contact">
-
-                <div class="map-card">
-                    <h3 style="margin:0 0 8px 0;color:var(--navy)">Visit Us</h3>
-                    <p style="margin:0 0 8px 0;color:var(--muted)">NYPD General Trading, Bahrain — Authorized
-                        distributors for assistive tech and document solutions.<br>
-                        Tel: +973 1234 5678 • Email: info@nypd-bh.com</p>
-
-                    <!-- Placeholder map image: replace with real embed or static map -->
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7859400558946!2d50.53718366264738!3d26.2361440370935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a568d0b543f1%3A0x8a6a11c87c2484c0!2sNYPD%20General%20Trading!5e0!3m2!1sen!2sin!4v1761737670956!5m2!1sen!2sin"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer" role="contentinfo">
-            <div>
-                <strong>NYPD General Trading — Bahrain</strong>
-                <div style="font-size:13px;margin-top:6px;color:var(--muted)">Importers & distributors of assistive
-                    technology, braille systems & office solutions.</div>
-            </div>
-            <div style="min-width:220px;text-align:right">
-                <div style="font-size:13px;color:var(--muted)">© <span id="year"></span> NYPD General Trading</div>
-                <div style="font-size:13px;margin-top:6px;color:var(--muted)">Manama, Bahrain • <a href="#contact"
-                        style="color:var(--navy);text-decoration:none">Contact</a></div>
-            </div>
-        </footer>
-    </main>
-
-    <script>
-        // small niceties
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // basic non-functional form handler (demo)
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thanks! This demo form is not connected — replace with your backend endpoint or mailto link.');
-        });
-    </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-
-<!-- Include Bootstrap CSS & JS (v5.3+) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<style>
-    /* Make it match your existing theme */
-    #gallery {
-        background: linear-gradient(180deg, #f7faff, #eef6ff);
-        padding: 60px 0;
-    }
-
-    #gallery h2 {
-        color: var(--navy, #072b57);
-        font-weight: 700;
-    }
-
-    /* Round, blue, modern buttons */
-    .custom-carousel-btn {
-        width: 48px;
-        height: 48px;
-        background-color: #0d6efd !important;
-        border-radius: 50%;
-        border: none;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: all 0.3s ease;
-        opacity: 0.9;
-    }
-
-    .custom-carousel-btn:hover {
-        background-color: #0b5ed7 !important;
-        opacity: 1;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        filter: invert(1) brightness(2);
-        width: 24px;
-        height: 24px;
-    }
-
-    .carousel-inner img {
-        transition: transform 0.4s ease;
-    }
-
-    .carousel-inner img:hover {
-        transform: scale(1.05);
-    }
-</style>
 
 </html>
