@@ -4,371 +4,626 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>NYPD General Trading — Modern Bootstrap Redesign</title>
-    <link rel="icon" type="image/x-icon" href="static/2020/2020/10/logo-NYPD-small-BGwhite.png">
+    <title>NYPD General Trading — Integrated Profile (Starts at Services)</title>
+
+    <!-- Bootstrap + Inter font -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <style>
         :root {
-            --mint: #037bb3;
-            --coral: #5f5f5f;
-            --dark: #052a22;
-            --light: #f9fdfb;
-            --accent: #20c997;
-            --gradient: linear-gradient(30deg, var(--mint), var(--coral));
+            --mint: #3a5ead;
+            --coral: #1b2174;
+            --dark: #000000;
+            --light: #ffffff;
+            --accent: #3a5ead;
+            --gradient: linear-gradient(135deg, var(--mint), var(--coral));
+            --soft-shadow: 0 8px 26px rgba(6, 22, 16, 0.06);
+        }
+
+        * {
+            box-sizing: border-box
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--light);
+            margin: 0;
+            background: var(--light);
             color: var(--dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             scroll-behavior: smooth;
         }
 
-        /* Navbar */
+        /* NAVBAR (kept as single-page nav; will scroll to anchors) */
         .navbar {
             background: var(--gradient);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-            border-radius: 0 0 1rem 1rem;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 10px 30px var(--mint);
+            padding: .6rem 1rem;
         }
 
         .navbar-brand,
         .navbar-nav .nav-link {
             color: #fff !important;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-            transition: all 0.3s ease;
+            font-weight: 700;
         }
 
-        .navbar-brand:hover,
-        .navbar-nav .nav-link:hover {
-            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-            transform: translateY(-1px);
+        .navbar-toggler {
+            border: 0;
         }
 
-        /* Buttons */
-        .btn-primary,
-        .btn-outline-success {
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        .navbar-toggler-icon {
+            filter: invert(1) brightness(2);
         }
 
-        .btn-primary {
-            background: var(--gradient);
-            border: none;
-            color: #fff;
+        /* Section container */
+        .section {
+            padding: 48px 1rem;
+            margin: 18px 1rem;
+            border-radius: 12px;
+            background: white;
+            box-shadow: var(--soft-shadow);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            opacity: 0.95;
+        /* Headings */
+        .section h2 {
+            font-weight: 700;
         }
 
-        .btn-outline-success {
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            background: transparent;
-        }
-
-        .btn-outline-success:hover {
-            background: var(--accent);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        /* Cards */
-        .card {
-            border: none;
-            border-radius: 1rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.35s ease;
-            background-color: #fff;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card img {
-            border-radius: 1rem 1rem 0 0;
-            transition: transform 0.3s ease;
-        }
-
-        .card img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Sections */
-        section {
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        /* Hero */
-        #home h6 {
+        .accent-title {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Carousel */
-        .carousel-item img {
-            border-radius: 1rem;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .carousel-item img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--gradient);
-            color: #fff;
-            border-radius: 1rem 1rem 0 0;
-            box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.1);
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-            opacity: 0.9;
-        }
-
-        /* Utility */
-        .shadow-soft {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        iframe {
-            border-radius: 1rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Hover highlight for cards & links */
-        a,
+        /* Cards / Visuals */
         .card {
-            transition: all 0.3s ease;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(6, 22, 16, 0.06);
+            transition: transform .26s ease, box-shadow .26s ease;
+            background: #fff;
         }
 
-        a:hover {
-            opacity: 0.85;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(6, 22, 16, 0.10);
+        }
+
+        .rounded-lg {
+            border-radius: 10px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            color: #fff;
+            border-radius: 999px;
+            padding: .55rem 1.05rem;
+            font-weight: 700;
+            transition: transform .2s ease, box-shadow .2s ease;
+            box-shadow: 0 8px 20px rgba(6, 22, 16, 0.08);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(6, 22, 16, 0.12);
+        }
+
+        .btn-outline-accent {
+            border-radius: 999px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+            padding: .45rem .85rem;
+            font-weight: 600;
+        }
+
+        .btn-outline-accent:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* small image card */
+        .partner-img {
+            border-radius: 12px;
+            background: #fff;
+            padding: 8px;
+            box-shadow: 0 6px 18px rgba(6, 22, 16, 0.04);
+            max-height: 120px;
+            object-fit: contain;
+            width: 100%;
+        }
+
+        /* profile section tint background (mint–coral subtle) */
+        .profile-tint {
+            background: linear-gradient(180deg, rgba(170, 235, 255, 0.22), rgba(0, 0, 0, 0.03));
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        /* fade-in animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .7s ease, transform .7s cubic-bezier(.2, .9, .2, 1);
+            will-change: opacity, transform;
+        }
+
+        .fade-in.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .muted {
+            color: rgba(3, 18, 16, 0.6);
+        }
+
+        .pretext {
+            white-space: pre-wrap;
+            line-height: 1.25;
+        }
+
+        @media(min-width:992px) {
+            .section {
+                padding: 56px 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top shadow-soft">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">NYPD General Trading</a>
-            <button class="navbar-toggler bg-white border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+    <!-- NAVBAR (single page navigation preserved) -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand" href="#">NYPD General Trading</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+                aria-controls="nav" aria-expanded="false" aria-label="Toggle">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-end" id="nav">
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#business-profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Partners</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="py-5" id="home">
-        <div class="container d-flex flex-column flex-lg-row align-items-center gap-4">
-            <div class="col-lg-6">
-                <h6 class="text-uppercase fw-bold mb-2">Established 2010</h6>
-                <h1 class="fw-bold mb-3">Importers & Exporters — Assistive Tech & Office Solutions</h1>
-                <p class="text-muted mb-4">
-                    We supply braille embossers, assistive technology, labeling systems, and document solutions to
-                    government, education, and corporate customers across Bahrain and the GCC.
-                </p>
-
-                <div class="d-flex flex-wrap gap-3">
-                    <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
-                        <span class="me-2 text-primary fw-bold">•</span>
-                        <div>
-                            <div class="fw-bold small">Authorized Distributors</div>
-                            <small class="text-muted">Leading global brands</small>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
-                        <span class="me-2 text-success fw-bold">✓</span>
-                        <div>
-                            <div class="fw-bold small">Service & Support</div>
-                            <small class="text-muted">Local setup & maintenance</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 text-center">
-                <div class="card p-3">
-                    <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
-                        alt="Braille embosser and assistive tech" class="img-fluid rounded mb-3" />
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="fw-semibold mb-0">Braillo & HumanWare Solutions</h5>
-                            <small class="text-muted">High-volume tactile printers and devices</small>
-                        </div>
-                        <span class="badge bg-success rounded-pill">GCC Wide</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="py-5 bg-white" id="products">
+    <!-- SERVICES (site starts here) -->
+    <section id="services" class="section fade-in">
         <div class="container">
-            <h2 class="fw-bold mb-3 text-center"
-                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Featured Products</h2>
-            <p class="text-center text-muted mb-5">A curated selection</p>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="accent-title">Services</h2>
+                    <p class="muted">On-site setup, staff training, preventive maintenance, and tailored project
+                        solutions
+                        for education, government and corporate customers.</p>
 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg"
-                            class="card-img-top" alt="Braillo Embosser">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">BRAILLO Tactile Embosser</h5>
-                            <p class="card-text text-muted">High-speed, industrial embosser for mass production of
-                                braille and tactile
-                                graphics.</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-light text-dark border">High Volume</span>
-                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center h-100">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                    style="width:64px;height:64px;object-fit:contain" alt="installation">
+                                <h6 class="mt-3">Installation & Training</h6>
+                                <p class="muted small">On-site setup, staff training and documentation for fast
+                                    adoption.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center h-100">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                    style="width:64px;height:64px;object-fit:contain" alt="maintenance">
+                                <h6 class="mt-3">Maintenance & Support</h6>
+                                <p class="muted small">Local technical support and preventive maintenance packages.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center h-100">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                    style="width:64px;height:64px;object-fit:contain" alt="custom">
+                                <h6 class="mt-3">Custom Solutions</h6>
+                                <p class="muted small">Project-based solutions for education, government, and enterprise
+                                    clients.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png"
-                            class="card-img-top" alt="HumanWare devices">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">HumanWare Assistive Devices</h5>
-                            <p class="card-text text-muted">Portable readers, magnifiers, and accessible tablets for
-                                students and
-                                professionals.</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-light text-dark border">Education</span>
-                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
-                            class="card-img-top" alt="Index Braille printers">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">Index Braille Printers</h5>
-                            <p class="card-text text-muted">Reliable desktop braille printers for institutions and small
-                                offices.</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-light text-dark border">Desktop</span>
-                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="py-5" id="services">
-        <div class="container">
-            <h2 class="fw-bold mb-4 text-center"
-                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Services</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 text-center p-4">
-                        <h5 class="fw-bold mb-2">Installation & Training</h5>
-                        <p class="text-muted">On-site setup, staff training, and documentation to ensure fast adoption.
+                <div class="col-lg-4">
+                    <div class="card p-3">
+                        <h6 class="fw-bold">Quick Contact</h6>
+                        <p class="muted small mb-1">Office: 1, Bldg.: 117T, Road: 051, Block: 206, Shaikh Isa avenue,
+                            Muharraq</p>
+                        <p class="muted small mb-1">Tel: 17581711, 36855599</p>
+                        <p class="muted small mb-1">Fax: 17581611</p>
+                        <p class="muted small mb-0">Email: <a href="mailto:zuhair@nypd-bh.com">zuhair@nypd-bh.com</a>
                         </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 text-center p-4">
-                        <h5 class="fw-bold mb-2">Maintenance & Support</h5>
-                        <p class="text-muted">Local technical support and preventive maintenance packages.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 text-center p-4">
-                        <h5 class="fw-bold mb-2">Custom Solutions</h5>
-                        <p class="text-muted">Project-based solutions for education, government, and enterprise
-                            customers.</p>
+                        <div class="mt-3 d-grid">
+                            <a href="#contact" class="btn btn-primary">Contact & Inquiries</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Partners Carousel -->
-    <section class="py-5 bg-light" id="gallery">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-4"
-                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Our Partners</h2>
-            <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+    <!-- PROFILE OVERVIEW (Mission & Vision as separate visual portions) -->
+    <section id="business-profile" class="section profile-tint fade-in">
+        <div class="container">
+            <h2 class="mb-3">BUSINESS PROFILE</h2>
+
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="card p-4 h-100">
+                        <div class="d-flex gap-3 align-items-start">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" alt="NYPD logo"
+                                style="width:96px;height:96px;object-fit:contain;border-radius:10px;">
+                            <div>
+                                <h5 class="mb-1">NYPD GENERAL TRADING</h5>
+                                <p class="muted pretext mb-0">
+                                    Established in Kingdom of Bahrain in the name of NYPD General Trading in 2010. NYPD
+                                    has built a credible reputation as importers, exporters and general traders which
+                                    successfully targets both public and private sector.
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Vision</h6>
+                                <p class="muted small">To be a profitable organization that offers quality products to
+                                    the entire region.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Mission</h6>
+                                <p class="muted small">To be a leader in the industry and give consumers products that
+                                    add value to their lives. To be an active participant in the growth and development
+                                    of the country.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <!-- Industries condensed into visual cards -->
+                    <div class="card p-3">
+                        <h6 class="fw-bold">Industries Served</h6>
+                        <div class="row g-3 mt-2">
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Blind & Visually Impaired</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Education</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Health</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Media</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Road Safety</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="card p-3 text-center">
+                                    <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                                        style="width:48px;height:48px;object-fit:contain" alt="">
+                                    <p class="mb-0 fw-semibold small">Advertising & Giveaways</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <a href="#projects" class="btn btn-outline-accent">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS / PARTNERS -->
+    <section id="clients" class="section fade-in">
+        <div class="container">
+            <h2 class="accent-title mb-2">Clients & Government Partners</h2>
+            <p class="muted">NYPD has provided services to government departments and corporate clients including:</p>
+
+            <div class="row g-3 mt-3">
+                <!-- each is a small card; logo placeholder used -->
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="Bapco">
+                        <p class="mt-2 mb-0 fw-semibold">Bapco</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="BIC">
+                        <p class="mt-2 mb-0 fw-semibold">Bahrain International Circuit (F1)</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="Education">
+                        <p class="mt-2 mb-0 fw-semibold">Ministry of Education</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="Interior">
+                        <p class="mt-2 mb-0 fw-semibold">Ministry of Interior</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="Health">
+                        <p class="mt-2 mb-0 fw-semibold">Ministry of Health</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img"
+                            alt="National Guard">
+                        <p class="mt-2 mb-0 fw-semibold">National Guard</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="TRA">
+                        <p class="mt-2 mb-0 fw-semibold">Telecommunications Regulatory Authority (TRA)</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="STS">
+                        <p class="mt-2 mb-0 fw-semibold">Special Technical Services (STS)</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card p-3 text-center">
+                        <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img" alt="MCSC">
+                        <p class="mt-2 mb-0 fw-semibold">MCSC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS & AGENCIES -->
+    <section id="products" class="section profile-tint fade-in">
+        <div class="container">
+            <h2 class="mb-3">Products & Agencies</h2>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold">Other Product Offerings</h5>
+                        <ul class="muted mt-2">
+                            <li>Custom made uniforms for ministries and health centres</li>
+                            <li>Uniform accessories for ministries, defence and health centres</li>
+                            <li>Medals, Trophies, Mementoes</li>
+                        </ul>
+                        <p class="mt-3"><a href="#contact" class="btn btn-outline-accent">Request Quotation</a></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card p-3 h-100">
+                        <h6 class="fw-bold">Agencies / Brands</h6>
+                        <div class="row g-3 mt-2">
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Aceally">
+                                <div class="small fw-semibold">Aceally</div>
+                                <div class="muted small">World-class shelves & racks</div>
+                            </div>
+
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Braillo">
+                                <div class="small fw-semibold">Braillo Norway</div>
+                                <div class="muted small">Braille reading materials</div>
+                            </div>
+
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Perkins">
+                                <div class="small fw-semibold">Perkins</div>
+                                <div class="muted small">Redefining access</div>
+                            </div>
+
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Humanware">
+                                <div class="small fw-semibold">Humanware</div>
+                                <div class="muted small">See things, Differently</div>
+                            </div>
+
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Index">
+                                <div class="small fw-semibold">Index Braille</div>
+                                <div class="muted small">Affordable Braille printers</div>
+                            </div>
+
+                            <div class="col-6 col-md-4 text-center">
+                                <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-2"
+                                    alt="Tayneks">
+                                <div class="small fw-semibold">Tayneks</div>
+                                <div class="muted small">Tactile surfaces & embossed products</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS (static carousel - not looping) -->
+    <section id="projects" class="section fade-in">
+        <div class="container">
+            <h2 class="accent-title mb-2">Projects</h2>
+            <p class="muted">Selected large-scale projects and installations.</p>
+
+            <div id="projectsCarousel" class="carousel slide mt-4" data-bs-interval="">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="row g-3 justify-content-center">
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/National-Guard-300x300.png"
-                                    class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOI-300x300.png" class="img-fluid"
-                                    alt=""></div>
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/Bapco-300x236.png"
-                                    class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOH-300x300.png" class="img-fluid"
-                                    alt=""></div>
+                        <div class="card p-3 text-center">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-3"
+                                alt="BAPCO">
+                            <h5 class="mb-0">BAPCO Upstream External Signages</h5>
+                            <p class="muted small mt-2">Large format external wayfinding and safety sign installation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="card p-3 text-center">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-3"
+                                alt="MOI Racking">
+                            <h5 class="mb-0">Ministry of Interior — Store Racking</h5>
+                            <p class="muted small mt-2">Warehouse racking, store organization and inventory systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="card p-3 text-center">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-3"
+                                alt="MOH Signs">
+                            <h5 class="mb-0">Ministry of Health — Road Signs</h5>
+                            <p class="muted small mt-2">Traffic and directional signage for health facilities and
+                                roadways.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="card p-3 text-center">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-3"
+                                alt="Tactile Surface">
+                            <h5 class="mb-0">Saudi Bahraini Institute for the Blind — Tactile Surface</h5>
+                            <p class="muted small mt-2">Design & installation of tactile floor surfaces and braille
+                                wayfinding.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="card p-3 text-center">
+                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" class="partner-img mb-3"
+                                alt="BIC Giveaways">
+                            <h5 class="mb-0">Bahrain International Circuit — F1 Giveaways</h5>
+                            <p class="muted small mt-2">Event giveaways and promotional material supply for large
+                                events.</p>
                         </div>
                     </div>
                 </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel"
+                    data-bs-slide="prev" aria-label="Prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel"
+                    data-bs-slide="next" aria-label="Next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="py-5" id="contact">
+    <!-- PARTNERS / GALLERY (static) -->
+    <section id="gallery" class="section fade-in">
+        <div class="container text-center">
+            <h2 class="accent-title">Our Partners</h2>
+            <p class="muted">Trusted brands and collaborators across the region.</p>
+
+            <div class="row g-3 mt-4 justify-content-center">
+                <div class="col-6 col-md-3"><img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                        class="partner-img" alt=""></div>
+                <div class="col-6 col-md-3"><img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                        class="partner-img" alt=""></div>
+                <div class="col-6 col-md-3"><img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                        class="partner-img" alt=""></div>
+                <div class="col-6 col-md-3"><img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png"
+                        class="partner-img" alt=""></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & MAP (original preserved) -->
+    <section id="contact" class="section profile-tint fade-in">
         <div class="container">
-            <h2 class="fw-bold mb-4 text-center"
-                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Contact & Inquiries</h2>
-            <div class="row g-4 align-items-center">
+            <h2 class="mb-3">Contact & Inquiries</h2>
+            <div class="row g-4 align-items-start">
                 <div class="col-lg-6">
                     <div class="card p-4">
                         <h5 class="fw-bold mb-2">Visit Us</h5>
-                        <p class="text-muted">NYPD General Trading, Bahrain — Authorized distributors for assistive tech
-                            and
-                            document solutions.<br>
-                            Tel: +973 1234 5678 • Email: info@nypd-bh.com</p>
+                        <p class="muted small mb-0">NYPD General Trading — Authorized distributors for assistive tech
+                            and document solutions.</p>
+                        <p class="muted small mb-2 mt-2">
+                            Office: 1, Bldg.: 117T, Road: 051, Block: 206, Shaikh Isa avenue, Muharraq, Kingdom of
+                            Bahrain<br>
+                            Tel: +973 17581711, 36855599 • Fax: 17581611<br>
+                            Email: <a href="mailto:zuhair@nypd-bh.com">zuhair@nypd-bh.com</a><br>
+                            Website: <a href="https://nypd-bh.com" target="_blank" rel="noopener">www.nypd-bh.com</a>
+                        </p>
+
+                        <div class="mt-3">
+                            <a href="mailto:zuhair@nypd-bh.com" class="btn btn-primary">Email Us</a>
+                            <a href="https://nypd-bh.com" target="_blank" rel="noopener"
+                                class="btn btn-outline-accent ms-2">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card p-0 overflow-hidden">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7859400558946!2d50.53718366264738!3d26.2361440370935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a568d0b543f1%3A0x8a6a11c87c2484c0!2sNYPD%20General%20Trading!5e0!3m2!1sen!2sin!4v1761737670956!5m2!1sen!2sin"
-                            width="100%" height="300" allowfullscreen="" loading="lazy"
+                            width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -376,8 +631,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-4 mt-5">
+    <!-- FOOTER -->
+    <footer class="m-1"
+        style="border-radius:12px; padding:18px; background:var(--gradient); color:#fff; box-shadow:0 10px 30px rgba(3,18,16,0.08);">
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <div>
                 <strong>NYPD General Trading — Bahrain</strong>
@@ -386,14 +642,28 @@
             </div>
             <div class="text-end">
                 <small>© <span id="year"></span> NYPD General Trading</small><br>
-                <small>Manama, Bahrain • <a href="#contact" class="fw-semibold">Contact</a></small>
+                <small>Manama, Bahrain • <a href="#contact"
+                        style="color:rgba(255,255,255,0.95); text-decoration:none;">Contact</a></small>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // fill year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // IntersectionObserver: fade-in sections
+        (function () {
+            const obs = new IntersectionObserver((entries, o) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('in-view'); o.unobserve(e.target); }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+        })();
     </script>
 </body>
 
