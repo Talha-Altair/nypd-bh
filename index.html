@@ -10,6 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        .img-no-crop {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+
         :root {
             --bg: #f7f9fb;
             --card: #ffffff;
@@ -382,20 +388,20 @@
                     </div>
                 </div>
 
-                <div style="margin-top:18px">
+                <!-- <div style="margin-top:18px">
                     <a class="btn" href="#products">View Products</a>
-                </div>
+                </div> -->
             </div>
 
             <aside class="hero-right" aria-hidden="false">
                 <!-- example product / hero image (replace with real image URLs) -->
-                <img src="https://via.placeholder.com/800x460?text=Braille+Embosser+%2F+Assistive+Tech"
+                <img class="img-no-crop" src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
                     alt="Braille embosser and assistive tech">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
                     <div>
                         <div style="font-weight:700;color:var(--navy);font-size:16px">Braillo & HumanWare Solutions
                         </div>
-                        <div style="font-size:13px;color:var(--muted)">High-volume tactile printers and accessible
+                        <div style="font-size:13px;color:var(--muted)">High-volume tactile printers and
                             devices</div>
                     </div>
                     <div class="pill">GCC Wide</div>
@@ -405,11 +411,13 @@
 
         <section class="section" id="products">
             <h2>Featured Products</h2>
-            <p style="margin:6px 0 0 0;color:var(--muted)">A curated selection — click any item to learn more.</p>
+            <p style="margin:6px 0 0 0;color:var(--muted)">A curated selection</p>
 
             <div class="grid" role="list">
                 <article class="card" role="listitem">
-                    <img src="https://via.placeholder.com/600x360?text=Braillo+Embosser" alt="Braillo Embosser">
+                    <img class="img-no-crop"
+                        src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg"
+                        alt="Braillo Embosser">
                     <h3>BRAILLO Tactile Embosser</h3>
                     <p>High-speed, industrial embosser for mass production of braille and tactile graphics.</p>
                     <div class="meta">
@@ -420,7 +428,9 @@
                 </article>
 
                 <article class="card" role="listitem">
-                    <img src="https://via.placeholder.com/600x360?text=HumanWare+Devices" alt="HumanWare devices">
+                    <img class="img-no-crop"
+                        src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png"
+                        alt="HumanWare devices">
                     <h3>HumanWare Assistive Devices</h3>
                     <p>Portable readers, magnifiers and accessible tablets for students and professionals.</p>
                     <div class="meta">
@@ -431,7 +441,8 @@
                 </article>
 
                 <article class="card" role="listitem">
-                    <img src="https://via.placeholder.com/600x360?text=Index+Braille+Printers"
+                    <img class="img-no-crop"
+                        src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
                         alt="Index Braille printers">
                     <h3>Index Braille Printers</h3>
                     <p>Reliable desktop braille printers for institutions and small offices.</p>
@@ -462,24 +473,84 @@
             </div>
         </section>
 
+        <section class="section" id="gallery">
+            <h2 class="text-center mb-4">Our Partners</h2>
+
+            <!-- Bootstrap Carousel Container -->
+            <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                <div class="carousel-inner d-flex">
+
+                    <!-- Each "carousel-item" holds 4 images at once -->
+                    <div class="carousel-item active">
+                        <div class="row gx-3">
+                            <div class="col-6 col-md-3"><img
+                                    src="/static/2020/2020/10/National-Guard-300x300.png"
+                                    class="img-fluid rounded shadow-sm" alt="Image 1"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=2"
+                                    class="img-fluid rounded shadow-sm" alt="Image 2"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=3"
+                                    class="img-fluid rounded shadow-sm" alt="Image 3"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=4"
+                                    class="img-fluid rounded shadow-sm" alt="Image 4"></div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row gx-3">
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=5"
+                                    class="img-fluid rounded shadow-sm" alt="Image 5"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=6"
+                                    class="img-fluid rounded shadow-sm" alt="Image 6"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=7"
+                                    class="img-fluid rounded shadow-sm" alt="Image 7"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=8"
+                                    class="img-fluid rounded shadow-sm" alt="Image 8"></div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row gx-3">
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=9"
+                                    class="img-fluid rounded shadow-sm" alt="Image 9"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="hhttps://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=10"
+                                    class="img-fluid rounded shadow-sm" alt="Image 10"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=1"
+                                    class="img-fluid rounded shadow-sm" alt="Image 1 repeat"></div>
+                            <div class="col-6 col-md-3"><img
+                                    src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png?text=2"
+                                    class="img-fluid rounded shadow-sm" alt="Image 2 repeat"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Navigation buttons -->
+                <button class="carousel-control-prev custom-carousel-btn" type="button"
+                    data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next custom-carousel-btn" type="button"
+                    data-bs-target="#galleryCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
         <section class="section" id="contact" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact & Inquiries</h2>
             <div class="contact">
-                <form aria-label="Contact form">
-                    <label for="name">Name</label>
-                    <input id="name" name="name" placeholder="Your full name">
-
-                    <label for="org">Organization</label>
-                    <input id="org" name="org" placeholder="Company or school">
-
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" placeholder="you@example.com">
-
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us briefly what you need..."></textarea>
-
-                    <button type="submit" class="btn" style="display:inline-block;">Send Inquiry</button>
-                </form>
 
                 <div class="map-card">
                     <h3 style="margin:0 0 8px 0;color:var(--navy)">Visit Us</h3>
@@ -520,5 +591,55 @@
     </script>
 
 </body>
+
+<!-- Include Bootstrap CSS & JS (v5.3+) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    /* Make it match your existing theme */
+    #gallery {
+        background: linear-gradient(180deg, #f7faff, #eef6ff);
+        padding: 60px 0;
+    }
+
+    #gallery h2 {
+        color: var(--navy, #072b57);
+        font-weight: 700;
+    }
+
+    /* Round, blue, modern buttons */
+    .custom-carousel-btn {
+        width: 48px;
+        height: 48px;
+        background-color: #0d6efd !important;
+        border-radius: 50%;
+        border: none;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+        opacity: 0.9;
+    }
+
+    .custom-carousel-btn:hover {
+        background-color: #0b5ed7 !important;
+        opacity: 1;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(1) brightness(2);
+        width: 24px;
+        height: 24px;
+    }
+
+    .carousel-inner img {
+        transition: transform 0.4s ease;
+    }
+
+    .carousel-inner img:hover {
+        transform: scale(1.05);
+    }
+</style>
 
 </html>
