@@ -2,291 +2,399 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NYPD General Trading — Modern Bootstrap Redesign</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NYPD General Trading — Modern Bootstrap Redesign</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <style>
-    :root {
-      --primary: #20c997; /* light coral green */
-      --secondary: #f8fdfb;
-      --text-dark: #083b2c;
-    }
+    <style>
+        :root {
+            --mint: #037bb3;
+            --coral: #5f5f5f;
+            --dark: #052a22;
+            --light: #f9fdfb;
+            --accent: #20c997;
+            --gradient: linear-gradient(30deg, var(--mint), var(--coral));
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--secondary);
-      color: var(--text-dark);
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
 
-    .navbar {
-      background: var(--primary);
-    }
+        /* Navbar */
+        .navbar {
+            background: var(--gradient);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            border-radius: 0 0 1rem 1rem;
+        }
 
-    .navbar-brand,
-    .navbar-nav .nav-link {
-      color: #fff !important;
-      font-weight: 600;
-    }
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: all 0.3s ease;
+        }
 
-    .navbar-brand:hover,
-    .navbar-nav .nav-link:hover {
-      opacity: 0.9;
-    }
+        .navbar-brand:hover,
+        .navbar-nav .nav-link:hover {
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
+        }
 
-    .btn-primary {
-      background-color: var(--primary);
-      border: none;
-      border-radius: 50px;
-    }
+        /* Buttons */
+        .btn-primary,
+        .btn-outline-success {
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
 
-    .btn-primary:hover {
-      background-color: #1cb387;
-    }
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            color: #fff;
+        }
 
-    .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            opacity: 0.95;
+        }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
+        .btn-outline-success {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+        }
 
-    footer {
-      background-color: var(--primary);
-      color: #fff;
-    }
+        .btn-outline-success:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+        }
 
-    .carousel-item img {
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-    }
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.35s ease;
+            background-color: #fff;
+        }
 
-    .carousel-item img:hover {
-      transform: scale(1.05);
-    }
-  </style>
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card img {
+            border-radius: 1rem 1rem 0 0;
+            transition: transform 0.3s ease;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sections */
+        section {
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        /* Hero */
+        #home h6 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Carousel */
+        .carousel-item img {
+            border-radius: 1rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient);
+            color: #fff;
+            border-radius: 1rem 1rem 0 0;
+            box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            opacity: 0.9;
+        }
+
+        /* Utility */
+        .shadow-soft {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        iframe {
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Hover highlight for cards & links */
+        a,
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.85;
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">NYPD General Trading</a>
-      <button class="navbar-toggler bg-white border-0" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-soft">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">NYPD General Trading</a>
+            <button class="navbar-toggler bg-white border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Hero -->
-  <section class="py-5" id="home">
-    <div class="container d-flex flex-column flex-lg-row align-items-center gap-4">
-      <div class="col-lg-6">
-        <h6 class="text-uppercase fw-bold text-primary mb-2">Established 2010</h6>
-        <h1 class="fw-bold mb-3">Importers & Exporters — Assistive Tech & Office Solutions</h1>
-        <p class="text-muted mb-4">
-          We supply braille embossers, assistive technology, labeling systems, and document solutions to
-          government, education, and corporate customers across Bahrain and the GCC.
-        </p>
+    <!-- Hero -->
+    <section class="py-5" id="home">
+        <div class="container d-flex flex-column flex-lg-row align-items-center gap-4">
+            <div class="col-lg-6">
+                <h6 class="text-uppercase fw-bold mb-2">Established 2010</h6>
+                <h1 class="fw-bold mb-3">Importers & Exporters — Assistive Tech & Office Solutions</h1>
+                <p class="text-muted mb-4">
+                    We supply braille embossers, assistive technology, labeling systems, and document solutions to
+                    government, education, and corporate customers across Bahrain and the GCC.
+                </p>
 
-        <div class="d-flex flex-wrap gap-3">
-          <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
-            <span class="me-2 text-primary fw-bold">•</span>
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
+                        <span class="me-2 text-primary fw-bold">•</span>
+                        <div>
+                            <div class="fw-bold small">Authorized Distributors</div>
+                            <small class="text-muted">Leading global brands</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
+                        <span class="me-2 text-success fw-bold">✓</span>
+                        <div>
+                            <div class="fw-bold small">Service & Support</div>
+                            <small class="text-muted">Local setup & maintenance</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center">
+                <div class="card p-3">
+                    <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
+                        alt="Braille embosser and assistive tech" class="img-fluid rounded mb-3" />
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="fw-semibold mb-0">Braillo & HumanWare Solutions</h5>
+                            <small class="text-muted">High-volume tactile printers and devices</small>
+                        </div>
+                        <span class="badge bg-success rounded-pill">GCC Wide</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="py-5 bg-white" id="products">
+        <div class="container">
+            <h2 class="fw-bold mb-3 text-center"
+                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Featured Products</h2>
+            <p class="text-center text-muted mb-5">A curated selection</p>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg"
+                            class="card-img-top" alt="Braillo Embosser">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">BRAILLO Tactile Embosser</h5>
+                            <p class="card-text text-muted">High-speed, industrial embosser for mass production of
+                                braille and tactile
+                                graphics.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark border">High Volume</span>
+                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png"
+                            class="card-img-top" alt="HumanWare devices">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">HumanWare Assistive Devices</h5>
+                            <p class="card-text text-muted">Portable readers, magnifiers, and accessible tablets for
+                                students and
+                                professionals.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark border">Education</span>
+                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
+                            class="card-img-top" alt="Index Braille printers">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Index Braille Printers</h5>
+                            <p class="card-text text-muted">Reliable desktop braille printers for institutions and small
+                                offices.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <span class="badge bg-light text-dark border">Desktop</span>
+                                <a href="#contact" class="btn btn-outline-success btn-sm">Enquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <h2 class="fw-bold mb-4 text-center"
+                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <h5 class="fw-bold mb-2">Installation & Training</h5>
+                        <p class="text-muted">On-site setup, staff training, and documentation to ensure fast adoption.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <h5 class="fw-bold mb-2">Maintenance & Support</h5>
+                        <p class="text-muted">Local technical support and preventive maintenance packages.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <h5 class="fw-bold mb-2">Custom Solutions</h5>
+                        <p class="text-muted">Project-based solutions for education, government, and enterprise
+                            customers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Carousel -->
+    <section class="py-5 bg-light" id="gallery">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4"
+                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Our Partners</h2>
+            <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/National-Guard-300x300.png"
+                                    class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOI-300x300.png" class="img-fluid"
+                                    alt=""></div>
+                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/Bapco-300x236.png"
+                                    class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOH-300x300.png" class="img-fluid"
+                                    alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="fw-bold mb-4 text-center"
+                style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Contact & Inquiries</h2>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="card p-4">
+                        <h5 class="fw-bold mb-2">Visit Us</h5>
+                        <p class="text-muted">NYPD General Trading, Bahrain — Authorized distributors for assistive tech
+                            and
+                            document solutions.<br>
+                            Tel: +973 1234 5678 • Email: info@nypd-bh.com</p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7859400558946!2d50.53718366264738!3d26.2361440370935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a568d0b543f1%3A0x8a6a11c87c2484c0!2sNYPD%20General%20Trading!5e0!3m2!1sen!2sin!4v1761737670956!5m2!1sen!2sin"
+                            width="100%" height="300" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-5">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <div>
-              <div class="fw-bold small">Authorized Distributors</div>
-              <small class="text-muted">Leading global brands</small>
+                <strong>NYPD General Trading — Bahrain</strong>
+                <p class="small mb-0">Importers & distributors of assistive technology, braille systems & office
+                    solutions.</p>
             </div>
-          </div>
-          <div class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm">
-            <span class="me-2 text-success fw-bold">✓</span>
-            <div>
-              <div class="fw-bold small">Service & Support</div>
-              <small class="text-muted">Local setup & maintenance</small>
+            <div class="text-end">
+                <small>© <span id="year"></span> NYPD General Trading</small><br>
+                <small>Manama, Bahrain • <a href="#contact" class="fw-semibold">Contact</a></small>
             </div>
-          </div>
         </div>
-      </div>
+    </footer>
 
-      <div class="col-lg-6 text-center">
-        <div class="card p-3">
-          <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Index-banner-1200-Copy.png"
-            alt="Braille embosser and assistive tech" class="img-fluid rounded mb-3" />
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h5 class="fw-semibold mb-0">Braillo & HumanWare Solutions</h5>
-              <small class="text-muted">High-volume tactile printers and devices</small>
-            </div>
-            <span class="badge bg-success rounded-pill">GCC Wide</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products -->
-  <section class="py-5 bg-white" id="products">
-    <div class="container">
-      <h2 class="fw-bold mb-3 text-center text-primary">Featured Products</h2>
-      <p class="text-center text-muted mb-5">A curated selection</p>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100">
-            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/BRAILLO-600-S2-300x225.jpg" class="card-img-top"
-              alt="Braillo Embosser">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold">BRAILLO Tactile Embosser</h5>
-              <p class="card-text text-muted">High-speed, industrial embosser for mass production of braille and tactile
-                graphics.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="badge bg-light text-dark border">High Volume</span>
-                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card h-100">
-            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Humanware-banner-1200.png" class="card-img-top"
-              alt="HumanWare devices">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold">HumanWare Assistive Devices</h5>
-              <p class="card-text text-muted">Portable readers, magnifiers, and accessible tablets for students and
-                professionals.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="badge bg-light text-dark border">Education</span>
-                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card h-100">
-            <img src="https://nypd-bh.com/wp-content/uploads/2020/10/Braillo-S2-banner-1200-Copy.png"
-              class="card-img-top" alt="Index Braille printers">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-bold">Index Braille Printers</h5>
-              <p class="card-text text-muted">Reliable desktop braille printers for institutions and small offices.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="badge bg-light text-dark border">Desktop</span>
-                <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="py-5" id="services">
-    <div class="container">
-      <h2 class="fw-bold mb-4 text-center text-primary">Services</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 text-center p-3">
-            <h5 class="fw-bold mb-2">Installation & Training</h5>
-            <p class="text-muted">On-site setup, staff training, and documentation to ensure fast adoption.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center p-3">
-            <h5 class="fw-bold mb-2">Maintenance & Support</h5>
-            <p class="text-muted">Local technical support and preventive maintenance packages.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center p-3">
-            <h5 class="fw-bold mb-2">Custom Solutions</h5>
-            <p class="text-muted">Project-based solutions for education, government, and enterprise customers.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Partners Carousel -->
-  <section class="py-5 bg-light" id="gallery">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-4 text-primary">Our Partners</h2>
-      <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row g-3 justify-content-center">
-              <div class="col-6 col-md-3"><img src="static/2020/2020/10/National-Guard-300x300.png"
-                  class="img-fluid shadow-sm" alt=""></div>
-              <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOI-300x300.png"
-                  class="img-fluid shadow-sm" alt=""></div>
-              <div class="col-6 col-md-3"><img src="static/2020/2020/10/Bapco-300x236.png"
-                  class="img-fluid shadow-sm" alt=""></div>
-              <div class="col-6 col-md-3"><img src="static/2020/2020/10/MOH-300x300.png"
-                  class="img-fluid shadow-sm" alt=""></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="py-5" id="contact">
-    <div class="container">
-      <h2 class="fw-bold mb-4 text-center text-primary">Contact & Inquiries</h2>
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6">
-          <div class="card p-4">
-            <h5 class="fw-bold mb-2">Visit Us</h5>
-            <p class="text-muted">NYPD General Trading, Bahrain — Authorized distributors for assistive tech and
-              document solutions.<br>
-              Tel: +973 1234 5678 • Email: info@nypd-bh.com</p>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7859400558946!2d50.53718366264738!3d26.2361440370935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a568d0b543f1%3A0x8a6a11c87c2484c0!2sNYPD%20General%20Trading!5e0!3m2!1sen!2sin!4v1761737670956!5m2!1sen!2sin"
-              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-4 mt-5">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center">
-      <div>
-        <strong>NYPD General Trading — Bahrain</strong>
-        <p class="small mb-0">Importers & distributors of assistive technology, braille systems & office solutions.</p>
-      </div>
-      <div class="text-end">
-        <small>© <span id="year"></span> NYPD General Trading</small><br>
-        <small>Manama, Bahrain • <a href="#contact" class="text-white text-decoration-none fw-semibold">Contact</a></small>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>
