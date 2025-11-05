@@ -4,176 +4,355 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>NYPD General Trading — Integrated Profile (Starts at Services)</title>
+    <title>Company — Navy / White Theme</title>
 
-    <!-- Bootstrap + Inter font -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        :root {
-            --mint: #3a5ead;
-            --coral: #1b2174;
-            --dark: #000000;
-            --light: #ffffff;
-            --accent: #3a5ead;
-            --gradient: linear-gradient(135deg, var(--mint), var(--coral));
-            --soft-shadow: 0 8px 26px rgba(6, 22, 16, 0.06);
+        /* Navbar hover & focus effects */
+        .navbar-nav .nav-link {
+            transition: color 0.25s ease, background-color 0.25s ease;
+            border-radius: 0.375rem;
         }
 
-        * {
-            box-sizing: border-box
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--accent) !important;
+            /* lighter blue text */
+            background-color: rgba(255, 255, 255, 0.1);
+            /* soft white overlay */
+        }
+
+        /* Color variables */
+        :root {
+            --navy: #071e40;
+            /* primary deep navy */
+            --navy-2: #0e3760;
+            /* slightly lighter */
+            --accent: #0d6efd;
+            /* bootstrap primary-ish accent */
+            --muted: #6c757d;
+            --bg: #ffffff;
+            --text: #0b2545;
+            --card-bg: #f8fbff;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--light);
-            color: var(--dark);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            scroll-behavior: smooth;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: var(--bg);
+            color: var(--text);
         }
 
-        /* NAVBAR (kept as single-page nav; will scroll to anchors) */
-        .navbar {
-            background: var(--gradient);
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 10px 30px var(--mint);
-            padding: .6rem 1rem;
+        /* Header */
+        .site-header {
+            border-bottom: 1px solid rgba(11, 37, 69, 0.06);
+            background: linear-gradient(180deg, rgba(11, 37, 69, 0.02), transparent);
         }
 
-        .navbar-brand,
+        .site-logo-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1rem;
+        }
+
+        .site-logo {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1.25rem;
+            letter-spacing: 0.2px;
+        }
+
+        /* Navbar second line */
+        .site-nav-line {
+            background: var(--bg);
+            padding: .35rem 1rem;
+        }
+
         .navbar-nav .nav-link {
-            color: #fff !important;
-            font-weight: 700;
-        }
-
-        .navbar-toggler {
-            border: 0;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1) brightness(2);
-        }
-
-        /* Section container */
-        .section {
-            padding: 48px 1rem;
-            margin: 18px 1rem;
-            border-radius: 12px;
-            background: white;
-            box-shadow: var(--soft-shadow);
-        }
-
-        /* Headings */
-        .section h2 {
-            font-weight: 700;
-        }
-
-        .accent-title {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Cards / Visuals */
-        .card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(6, 22, 16, 0.06);
-            transition: transform .26s ease, box-shadow .26s ease;
-            background: #fff;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(6, 22, 16, 0.10);
-        }
-
-        .rounded-lg {
-            border-radius: 10px;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: var(--gradient);
-            border: none;
-            color: #fff;
-            border-radius: 999px;
-            padding: .55rem 1.05rem;
-            font-weight: 700;
-            transition: transform .2s ease, box-shadow .2s ease;
-            box-shadow: 0 8px 20px rgba(6, 22, 16, 0.08);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 36px rgba(6, 22, 16, 0.12);
-        }
-
-        .btn-outline-accent {
-            border-radius: 999px;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            background: transparent;
-            padding: .45rem .85rem;
+            color: var(--navy);
             font-weight: 600;
+            padding: .5rem 1rem;
         }
 
-        .btn-outline-accent:hover {
-            background: var(--accent);
-            color: #fff;
-            transform: translateY(-3px);
+        .navbar-nav .nav-link:hover {
+            color: var(--accent);
         }
 
-        /* small image card */
-        .partner-img {
-            border-radius: 12px;
-            background: #fff;
-            padding: 8px;
-            box-shadow: 0 6px 18px rgba(6, 22, 16, 0.04);
-            max-height: 120px;
-            object-fit: contain;
+        /* Hero container */
+        .hero {
             width: 100%;
+            aspect-ratio: 4 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* profile section tint background (mint–coral subtle) */
-        .profile-tint {
-            background: linear-gradient(180deg, rgba(170, 235, 255, 0.22), rgba(0, 0, 0, 0.03));
+        /* Image wrapper */
+        .hero-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Each image fills its portion */
+        .hero-img {
+            flex: 1;
+            /* base width for left and right images */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Middle image gets more width */
+        .hero-img-center {
+            flex: 1.5;
+            /* adjust this for how wide you want it */
+        }
+
+        /* Optional: smooth balance on image edges */
+        .hero-img:first-child {
+            background-position: right center;
+        }
+
+        .hero-img:last-child {
+            background-position: left center;
+        }
+
+        /* Overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        }
+
+        /* Hero content positioning */
+        .hero-content {
+            position: absolute;
+            top: 8%;
+            /* moves it toward the top */
+            left: 50%;
+            transform: translateX(-50%);
+            /* keeps horizontal centering only */
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* ----------------------------- */
+        /* MOBILE VIEW ADJUSTMENTS */
+        /* ----------------------------- */
+        @media (max-width: 768px) {
+            .hero {
+                aspect-ratio: 2 / 1;
+                /* a bit taller for mobile */
+                flex-direction: column;
+            }
+
+            .hero-images {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            /* Only show the center image on mobile */
+            .hero-img {
+                display: none;
+            }
+
+            .hero-img-center {
+                display: block;
+                width: 100%;
+                aspect-ratio: 2 / 1;
+                background-position: center;
+            }
+
+            /* Remove overlay and put text below image */
+            .hero-overlay {
+                display: none;
+            }
+
+            .hero-content {
+                position: static;
+                transform: none;
+                color: #000;
+                background: #fff;
+                padding: 1.5rem 1rem;
+                text-align: center;
+            }
+
+            .hero-content h1,
+            .hero-content p {
+                color: #000;
+                /* ensures readability */
+            }
+        }
+
+
+
+        /* subtle panning animation */
+        @keyframes pan {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        /* Alternating sections */
+        .feature {
+            padding: 3rem 0;
+            align-items: center;
+        }
+
+        .feature .feature-img-main {
+            background-image: url("static/2020/2020/10/MOI-300x300.png");
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            border-radius: .5rem;
+            min-height: 220px;
+            aspect-ratio: 4 / 3;
+        }
+
+        .feature .feature-img-landscape {
+            background-image: url("static/2020/2020/10/MOI-300x300.png");
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            aspect-ratio: 3 / 1;
+            /* landscape 3:1 */
+            border-radius: .5rem;
+            margin-top: .75rem;
+        }
+
+        /* Button rounding */
+        .btn-rounded {
+            border-radius: 999px;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        /* Partners cards */
+        .partners {
+            padding: 3rem 0;
+            background: transparent;
+        }
+
+        .partner-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(11, 37, 69, 0.06);
             border-radius: 12px;
-            padding: 22px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform .18s ease, box-shadow .18s ease;
         }
 
-        /* fade-in animation on scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .7s ease, transform .7s cubic-bezier(.2, .9, .2, 1);
-            will-change: opacity, transform;
+        .partner-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08);
         }
 
-        .fade-in.in-view {
-            opacity: 1;
-            transform: translateY(0);
+        .partner-card img {
+            max-height: 64px;
+            object-fit: contain;
+            margin-bottom: .75rem;
         }
 
-        .muted {
-            color: rgba(3, 18, 16, 0.6);
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
         }
 
-        .pretext {
-            white-space: pre-wrap;
-            line-height: 1.25;
+        footer a {
+            color: #d7e7ff;
+            text-decoration: underline;
         }
 
-        .altair-shadow {
-            box-shadow: var(--soft-shadow);
+        .map-embed {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border: 0;
+            border-radius: .5rem;
         }
 
-        @media(min-width:992px) {
-            .section {
-                padding: 56px 2rem;
+        /* small tweaks */
+        @media (max-width: 767px) {
+            .site-logo {
+                font-size: 1.05rem;
+            }
+
+            .feature {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Partner section spacing */
+        .partners {
+            padding: 3rem 0;
+        }
+
+        /* Partner card layout */
+        .partner-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Logo images */
+        .partner-card img {
+            width: 100%;
+            height: auto;
+            max-height: 140px;
+            /* controls height */
+            object-fit: contain;
+            /* prevents distortion */
+            margin-bottom: 0.2rem;
+            transition: transform 0.2s ease;
+        }
+
+        /* Hover effect for desktop */
+        .partner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .partner-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Partner name styling */
+        .partner-card h6 {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Make logos larger on bigger screens */
+        @media (min-width: 768px) {
+            .partner-card img {
+                max-height: 150px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .partner-card img {
+                max-height: 180px;
             }
         }
     </style>
@@ -181,518 +360,267 @@
 
 <body>
 
-    <!-- NAVBAR (single page navigation preserved) -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid px-3">
-            <a class="navbar-brand" href="#">NYPD General Trading</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
-                aria-controls="nav" aria-expanded="false" aria-label="Toggle">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="nav">
-                <ul class="navbar-nav gap-3">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#business-profile">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- HEADER -->
+    <header class="site-header">
+        <!-- first line: left logo, centered name -->
+        <div class="site-logo-line position-relative py-2 " style="background-color: var(--navy);">
+            <div class="container position-relative">
+                <!-- Left logo -->
+                <img src="static/docs/logo-3.jpg" alt="NYPD General Trading Logo"
+                    class="position-absolute top-50 start-0 translate-middle-y"
+                    style="height:64px; width:auto; border-radius:10px;">
 
-
-
-    <!-- PROFILE OVERVIEW (Mission & Vision as separate visual portions) -->
-    <section id="business-profile" class="section profile-tint fade-in">
-        <div class="container">
-            <h2 class="mb-3">BUSINESS PROFILE</h2>
-
-            <div class="row g-4">
-                <div class="col-lg-7">
-                    <div class="card p-4 h-100">
-                        <div class="d-flex gap-3 align-items-start">
-                            <img src="static/2020/2020/10/logo-NYPD-small-BGwhite.png" alt="NYPD logo"
-                                style="width:96px;height:96px;object-fit:contain;border-radius:10px;">
-                            <div>
-                                <h5 class="mb-1">NYPD GENERAL TRADING</h5>
-                                <p class="muted pretext mb-0">Established in Kingdom of Bahrain in the name of NYPD General Trading in 2010. NYPD has built a credible reputation as importers, exporters and general traders which successfully targets both public and private sector.
-                                </p>
-                            </div>
-                        </div>
-
-                        <hr class="my-3">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6 class="fw-bold">Vision</h6>
-                                <p class="muted small">To be a profitable organization that offers quality products to
-                                    the entire region.</p>
-                            </div>
-                            <div class="col-md-6">
-                                <h6 class="fw-bold">Mission</h6>
-                                <p class="muted small">To be a leader in the industry and give consumers products that
-                                    add value to their lives. To be an active participant in the growth and development
-                                    of the country.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-lg-4">
-                    <div class="card p-3">
-                        <h6 class="fw-bold">Quick Contact</h6>
-                        <p class="muted small mb-1">Office: 1, Bldg.: 117T, Road: 051, Block: 206, Shaikh Isa avenue,
-                            Muharraq</p>
-                        <p class="muted small mb-1">Tel: 17581711, 36855599</p>
-                        <p class="muted small mb-1">Fax: 17581611</p>
-                        <p class="muted small mb-0">Email: <a href="mailto:zuhair@nypd-bh.com">zuhair@nypd-bh.com</a>
-                        </p>
-                        <div class="mt-3 d-grid">
-                            <a href="#contact" class="btn btn-primary">Contact & Inquiries</a>
-                        </div>
-                    </div>
+                <!-- Centered company name -->
+                <div class="text-center fw-bold" style="font-size:1.9rem; color:var(--card-bg); letter-spacing:0.5px;">
+                    NYPD General Trading
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- CLIENTS / PARTNERS -->
-    <section id="clients" class="section fade-in">
-        <div class="container">
-            <h2 class="accent-title mb-2">Clients & Government Partners</h2>
-            <p class="muted">NYPD has provided services to government departments and corporate clients including:</p>
+        <!-- second line: navbar -->
+        <div class="site-nav-line" style="background-color:var(--navy);">
+            <nav class="navbar navbar-expand-lg navbar-dark py-2">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-            <div class="row g-3 mt-3">
-                <!-- each is a small card; logo placeholder used -->
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/2020/2020/10/Bapco-300x236.png" class="partner-img" alt="Bapco">
-                        <p class="mt-2 mb-0 fw-semibold">Bapco</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="https://bicpay.bahraingp.com/assets/images/skin/logo.png" class="partner-img"
-                            alt="BIC">
-                        <p class="mt-2 mb-0 fw-semibold">Bahrain International Circuit (F1)</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/2020/2020/10/MOE-300x300.png" class="partner-img" alt="Education">
-                        <p class="mt-2 mb-0 fw-semibold">Ministry of Education</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/2020/2020/10/MOI-300x300.png" class="partner-img" alt="Interior">
-                        <p class="mt-2 mb-0 fw-semibold">Ministry of Interior</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/2020/2020/10/MOH-300x300.png" class="partner-img" alt="Health">
-                        <p class="mt-2 mb-0 fw-semibold">Ministry of Health</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/2020/2020/10/National-Guard-300x300.png" class="partner-img"
-                            alt="National Guard">
-                        <p class="mt-2 mb-0 fw-semibold">National Guard</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="static/images/tra.png" class="partner-img" alt="TRA">
-                        <p class="mt-2 mb-0 fw-semibold">Telecommunications Regulatory Authority (TRA)</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card p-3 text-center">
-                        <img src="https://foodcitybahrain.com/wp-content/uploads/2021/06/STS.jpeg" class="partner-img"
-                            alt="STS">
-                        <p class="mt-2 mb-0 fw-semibold">Special Technical Services (STS)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES (site starts here) -->
-    <section id="services" class="section fade-in">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="accent-title">Services</h2>
-                    <p class="muted">
-                    <p style="font-weight: bold;">NYPD General Trading</p> provides On-site setup, staff training,
-                    preventive maintenance, and tailored project
-                    solutions
-                    for education, government and corporate customers.</p>
-
-                    <div class="row g-3 mt-4">
-                        <div class="col-md-4">
-                            <div class="card p-3 text-center h-100">
-                                <h6 class="mt-3">Installation & Training</h6>
-                                <p class="muted small">On-site setup, staff training and documentation for fast
-                                    adoption.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card p-3 text-center h-100">
-                                <h6 class="mt-3">Maintenance & Support</h6>
-                                <p class="muted small">Local technical support and preventive maintenance packages.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card p-3 text-center h-100">
-                                <h6 class="mt-3">Custom Solutions</h6>
-                                <p class="muted small">Project-based solutions for education, government, and enterprise
-                                    clients.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <!-- Industries condensed into visual cards -->
-                    <div class="card p-3">
-                        <h6 class="fw-bold">Industries Served</h6>
-                        <div class="row g-3 mt-2">
-                            <div class="col-6 col-md-6">
-                                <div class="altair-shadow card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small ">Blind & Visually Impaired</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-6">
-                                <div class="card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small">Education</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-6">
-                                <div class="card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small">Health</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-6">
-                                <div class="card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small">Media</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-6">
-                                <div class="card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small">Road Safety</p>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-6">
-                                <div class="card p-3 text-center">
-                                    <placeholder>
-                                        <p class="mb-0 fw-semibold small">Advertising & Giveaways</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-3 text-center">
-                            <a href="#projects" class="btn btn-outline-accent">View Projects</a>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCTS & AGENCIES -->
-    <section id="products" class="section profile-tint fade-in">
-        <div class="container">
-            <h2 class="mb-3">Products & Agencies</h2>
-
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="card p-4 h-100">
-                        <h5 class="fw-bold">Other Product Offerings</h5>
-                        <ul class="muted mt-2">
-                            <li>Custom made uniforms for ministries and health centres</li>
-                            <li>Uniform accessories for ministries, defence and health centres</li>
-                            <li>Medals, Trophies, Mementoes</li>
+                    <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                        <ul class="navbar-nav gap-4"> <!-- increased spacing -->
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold px-3 py-2 text-white" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold px-3 py-2 text-white" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold px-3 py-2 text-white" href="#">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold px-3 py-2 text-white" href="#site-footer">Contact</a>
+                            </li>
                         </ul>
-                        <p class="mt-3"><a href="#contact" class="btn btn-outline-accent">Request Quotation</a></p>
                     </div>
                 </div>
-
-                <div class="col-lg-6">
-                    <div class="card p-3 h-100">
-                        <h6 class="fw-bold">Agencies / Brands</h6>
-                        <div class="row g-3 mt-2">
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/aceally.png" class="partner-img mb-2" alt="Aceally">
-                                <div class="small fw-semibold">Aceally</div>
-                                <div class="muted small">World-class shelves & racks</div>
-                            </div>
-
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/braillo.png" class="partner-img mb-2" alt="Braillo">
-                                <div class="small fw-semibold">Braillo Norway</div>
-                                <div class="muted small">Braille reading materials</div>
-                            </div>
-
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/perkins.png" class="partner-img mb-2" alt="Perkins">
-                                <div class="small fw-semibold">Perkins</div>
-                                <div class="muted small">Redefining access</div>
-                            </div>
-
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/humanware.png" class="partner-img mb-2" alt="Humanware">
-                                <div class="small fw-semibold">Humanware</div>
-                                <div class="muted small">See things, Differently</div>
-                            </div>
-
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/indexbraille.png" class="partner-img mb-2" alt="Index">
-                                <div class="small fw-semibold">Index Braille</div>
-                                <div class="muted small">Affordable Braille printers</div>
-                            </div>
-
-                            <div class="col-6 col-md-4 text-center">
-                                <img src="static/images/tayneks.png" class="partner-img mb-2" alt="Tayneks">
-                                <div class="small fw-semibold">Tayneks</div>
-                                <div class="muted small">Tactile surfaces & embossed products</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- PROJECTS (Static Portrait Cards Grid) -->
-    <section id="projects" class="section fade-in">
-        <div class="container">
-            <h2 class="accent-title mb-2 text-center">Projects</h2>
-            <p class="muted text-center mb-4">Selected large-scale projects and installations.</p>
 
-            <div class="row justify-content-center g-4">
 
-                <!-- Project Card -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss1.png" alt="BAPCO Upstream External Signages" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">BAPCO Upstream External Signages</h6>
-                        <p class="muted small mb-0">Large format external wayfinding and safety sign installation.</p>
-                    </div>
-                </div>
 
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss2.png" alt="MOI Store Racking" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Ministry of Interior — Store Racking</h6>
-                        <p class="muted small mb-0">Warehouse racking, store organization and inventory systems.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss3.png" alt="MOH Road Signs" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Ministry of Health — Road Signs</h6>
-                        <p class="muted small mb-0">Traffic and directional signage for health facilities and roadways.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss4.png" alt="Tactile Surface" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Saudi Bahraini Institute for the Blind — Tactile Surface</h6>
-                        <p class="muted small mb-0">Design & installation of tactile floor surfaces and braille
-                            wayfinding.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss5.png" alt="BIC Giveaways" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Bahrain International Circuit — F1 Giveaways</h6>
-                        <p class="muted small mb-0">Event giveaways and promotional material supply for large events.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss6.png" alt="BIC Giveaways" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Aceally Agencies</h6>
-                        <p class="muted small mb-0">Store Racking and Shelving solutions for warehouses and retail
-                            outlets.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss7.png" alt="BIC Giveaways" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Tayneks Accessibility</h6>
-                        <p class="muted small mb-0">Brailled Embosses tactile metal signboards.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 text-center p-3 shadow-sm">
-                        <div class="project-img-wrap">
-                            <img src="static/images/ss8.png" alt="BIC Giveaways" class="project-img">
-                        </div>
-                        <h6 class="fw-bold mt-3 mb-1">Braillo Norway</h6>
-                        <p class="muted small mb-0">Braille Embossing Heavy Machinery.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
+    <section class="hero" role="img" aria-label="Hero image">
+        <div class="hero-overlay"></div>
+        <div class="hero-images">
+            <div class="hero-img" style="background-image: url('static/docs/logo-hero-1.jpg');"></div>
+            <div class="hero-img hero-img-center" style="background-image: url('static/docs/logo-hero-3.jpg');"></div>
+            <div class="hero-img" style="background-image: url('static/docs/logo-hero-2.jpg');"></div>
+        </div>
+        <div class="hero-content container">
+            <h1 class="display-5" style="color: var(--navy);">Welcome to NYPD General Trading</h1>
+            <p class="lead " style="color: var(--navy);">Bahrain's Leading Industrial & Consumer Products Entreprise</p>
         </div>
     </section>
 
 
-    <!-- CONTACT & MAP (original preserved) -->
-    <section id="contact" class="section profile-tint fade-in">
-        <div class="container">
-            <h2 class="mb-3">Contact & Inquiries</h2>
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-6">
-                    <div class="card p-4">
-                        <h5 class="fw-bold mb-2">Visit Us</h5>
-                        <p class="muted small mb-0">NYPD General Trading — Authorized distributors for assistive tech
-                            and document solutions.</p>
-                        <p class="muted small mb-2 mt-2">
-                            Office: 1, Bldg.: 117T, Road: 051, Block: 206, Shaikh Isa avenue, Muharraq, Kingdom of
-                            Bahrain<br>
-                            Tel: +973 17581711, 36855599 • Fax: 17581611<br>
-                            Email: <a href="mailto:zuhair@nypd-bh.com">zuhair@nypd-bh.com</a><br>
-                            Website: <a href="https://nypd-bh.com" target="_blank" rel="noopener">www.nypd-bh.com</a>
-                        </p>
 
-                        <div class="mt-3">
-                            <a href="mailto:zuhair@nypd-bh.com" class="btn btn-primary">Email Us</a>
-                            <a href="https://nypd-bh.com" target="_blank" rel="noopener"
-                                class="btn btn-outline-accent ms-2">Visit Website</a>
-                        </div>
-                    </div>
+
+    <!-- Features: alternating text and image (3 times) -->
+    <main class="container">
+        <!-- Feature 1: text left, image right -->
+
+
+        <!-- Feature 2: image left, text right -->
+        <section class="feature row gx-5 my-5 align-items-center">
+            <div class="col-lg-6 order-lg-1 order-2">
+                <div class="feature-img-main" style="background-image: url(static/images/ss3.png);">
                 </div>
+                <!-- <div class="feature-img-landscape"></div> -->
+            </div>
+            <div class="col-lg-6 order-lg-2 order-1">
+                <h2>Printed Signage</h2>
+                <p class="text-muted">Official Signage for the Kingdom of Bahrain brought by NYPD</p>
+                <a class="btn btn-primary btn-rounded" href="#" role="button">See How</a>
+            </div>
+        </section>
 
-                <div class="col-lg-6">
-                    <div class="card p-0 overflow-hidden">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3578.102191163332!2d50.6112975754171!3d26.258346577043238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDE1JzMwLjEiTiA1MMKwMzYnNDkuOSJF!5e0!3m2!1sen!2sin!4v1761889716467!5m2!1sen!2sin"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+        <section class="feature row gx-5 my-5 align-items-center">
+            <div class="col-lg-6 order-1">
+                <h2>Warehouse Racking</h2>
+                <p class="text-muted">Storage & Industrial racking services powered with trusted partners like Aceally
+                </p>
+                <a class="btn btn-primary btn-rounded" href="#" role="button">Learn More</a>
+            </div>
+            <div class="col-lg-6 order-2">
+                <div class="feature-img-main" style="background-image: url(static/images/ss6.png);"></div>
+                <!-- <div class="feature-img-landscape"></div> -->
+            </div>
+        </section>
+
+        <section class="feature row gx-5 my-5 align-items-center">
+            <div class="col-lg-6 order-lg-1 order-2">
+                <div class="feature-img-main" style="background-image: url(static/images/ss8.png);">
+                </div>
+                <!-- <div class="feature-img-landscape"></div> -->
+            </div>
+            <div class="col-lg-6 order-lg-2 order-1">
+                <h2>Accessbility Production</h2>
+                <p class="text-muted">Braille Embossing & Accessbility products partnered with Braillo (Norway).</p>
+                <a class="btn btn-primary btn-rounded" href="#" role="button">See How</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Partners: 8 cards -->
+    <section class="partners container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0">Our Partners</h3>
+            <p class="mb-0 text-muted small">Trusted partners we work with</p>
+        </div>
+
+        <div class="row g-3">
+            <!-- 8 partner cards -->
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-2.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-5.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-9.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-10.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-12.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-13.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-15.jpg" alt="Partner logo">
+
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="partner-card h-100 d-flex flex-column justify-content-center">
+                    <img src="static/docs/logo-6.jpg" alt="Partner logo">
+
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="m-1"
-        style="border-radius:12px; padding:18px; background:var(--gradient); color:#fff; box-shadow:0 10px 30px rgba(3,18,16,0.08);">
-        <div class="container d-flex flex-wrap justify-content-between align-items-center">
-            <div>
-                <strong>NYPD General Trading — Bahrain</strong>
-                <p class="small mb-0">Importers & distributors.</p>
+    <footer id="site-footer">
+        <div class="container py-4">
+            <div class="row gy-4 align-items-start">
+                <!-- Contact Column -->
+                <div class="col-lg-4">
+                    <div style="background-color: var(--navy);" class="card p-3">
+                        <div style="color: whitesmoke;">
+                            <h6 class="fw-bold">Contact Us</h6>
+                            <p class="muted small mb-1">Office: 1, Bldg.: 117T, Road: 051, Block: 206, Shaikh Isa
+                                avenue,
+                                Muharraq</p>
+                            <p class="muted small mb-1">Tel: 17581711, 36855599</p>
+                            <p class="muted small mb-1">Fax: 17581611</p>
+                            <p class="muted small mb-0">Email: <a style="color: whitesmoke;"
+                                    href="mailto:zuhair@nypd-bh.com">zuhair@nypd-bh.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Column -->
+                <div class="col-24 col-md-6 col-lg-24">
+                    <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3578.102191163332!2d50.6112975754171!3d26.258346577043238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDE1JzMwLjEiTiA1MMKwMzYnNDkuOSJF!5e0!3m2!1sen!2sin!4v1762368360776!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
-            <div class="text-end">
-                <small>© <span id="year"></span> NYPD General Trading</small><br>
-                <small>Muharraq, Bahrain • <a href="#contact"
-                        style="color:rgba(255,255,255,0.95); text-decoration:none;">Contact</a></small>
+
+            <hr class="my-4 border-light opacity-25">
+
+            <div class="text-center small text-white-50">
+                © 2025 NYPD GENERAL TRADING — All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+
+    <!-- Bootstrap JS (for navbar collapse functionality) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // fill year
-        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // IntersectionObserver: fade-in sections
-        (function () {
-            const obs = new IntersectionObserver((entries, o) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) { e.target.classList.add('in-view'); o.unobserve(e.target); }
-                });
-            }, { threshold: 0.12 });
-
-            document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-        })();
-    </script>
     <style>
-        .project-img-wrap {
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- FIXES BELOW --- */
+
+        /* Make header responsive: prevent overlap */
+        @media (max-width: 767px) {
+            .site-logo-line .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .site-logo-line img {
+                position: static !important;
+                transform: none !important;
+                margin-bottom: 0.5rem;
+            }
+
+            .site-logo-line .text-center {
+                font-size: 1.4rem !important;
+                text-align: center;
+            }
         }
 
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .3s ease;
+        /* Ensure navbar toggler clickable (fix z-index) */
+        .navbar-toggler {
+            z-index: 1051;
         }
 
-        .card:hover .project-img {
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 576px) {
-            .project-img-wrap {
-                aspect-ratio: 3 / 4;
+        /* Add slight padding for mobile menu items */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background-color: var(--navy);
+                border-radius: 0 0 0.75rem 0.75rem;
+                padding: 1rem 0.5rem;
             }
         }
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
-
 
 </html>
