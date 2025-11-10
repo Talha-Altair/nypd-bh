@@ -273,7 +273,6 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
             /* subtle border for definition */
         }
-
     </style>
 </head>
 
@@ -298,7 +297,8 @@
                     <div class="collapse navbar-collapse justify-content-center" id="mainNavProd">
                         <ul class="navbar-nav gap-4">
                             <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-white active" href="/products.html">Products</a>
+                            <li class="nav-item"><a class="nav-link text-white active"
+                                    href="/products.html">Products</a>
                             </li>
                             <li class="nav-item"><a class="nav-link text-white" href="/#site-footer">Contact</a></li>
                         </ul>
@@ -314,41 +314,15 @@
             <!-- LEFT -->
             <aside class="left-pane">
                 <div class="panel-title">Partners</div>
-                <div class="company-option active png-fixer" data-company="tayneks"><img src="static/product/Tayneks/logo-12.jpg"
-                        alt="Tayneks">
-                    <div>
-                        <h5>Tayneks</h5>
-                        <p>Traffic & Safety Signage</p>
-                    </div>
-                </div>
-                <div class="company-option png-fixer" data-company="index"><img src="static/product/Index Braille/logo-2.jpg"
-                        alt="Index Braille">
-                    <div>
-                        <h5>Index Braille</h5>
-                        <p>Braille Embossers</p>
-                    </div>
-                </div>
-                <div class="company-option" data-company="aceally"><img src="static/product/Aceally/logo-7.jpg"
+
+                <div class="company-option active" data-company="aceally"><img src="static/product/Aceally/logo-7.jpg"
                         alt="Aceally">
                     <div>
                         <h5>Aceally</h5>
                         <p>Warehouse Racking Systems</p>
                     </div>
                 </div>
-                <div class="company-option" data-company="perkins"><img src="static/product/Perkins/logo-1.jpg"
-                        alt="Perkins Brailler">
-                    <div>
-                        <h5>Perkins Brailler</h5>
-                        <p>Braille Writing Machines</p>
-                    </div>
-                </div>
-                <div class="company-option" data-company="humanware"><img src="static/product/Humanware/logo-7.jpg"
-                        alt="HumanWare">
-                    <div>
-                        <h5>HumanWare</h5>
-                        <p>Assistive Technology</p>
-                    </div>
-                </div>
+
                 <div class="company-option" data-company="braillo"><img src="static/product/Braillo Norway/logo-2.jpg"
                         alt="Braillo">
                     <div>
@@ -356,16 +330,65 @@
                         <p>Industrial Braille Printers</p>
                     </div>
                 </div>
+
+                <div class="company-option" data-company="perkins"><img src="static/product/Perkins/logo-1.jpg"
+                        alt="Perkins Brailler">
+                    <div>
+                        <h5>Perkins Brailler</h5>
+                        <p>Braille Writing Machines</p>
+                    </div>
+                </div>
+
+                <div class="company-option" data-company="humanware"><img src="static/product/Humanware/logo-7.jpg"
+                        alt="HumanWare">
+                    <div>
+                        <h5>HumanWare</h5>
+                        <p>Assistive Technology</p>
+                    </div>
+                </div>
+
+                <div class="company-option png-fixer" data-company="index"><img
+                        src="static/product/Index Braille/logo-2.jpg" alt="Index Braille">
+                    <div>
+                        <h5>Index Braille</h5>
+                        <p>Braille Embossers</p>
+                    </div>
+                </div>
+
+                <div class="company-option png-fixer" data-company="tayneks"><img
+                        src="static/product/Tayneks/logo-12.jpg" alt="Tayneks">
+                    <div>
+                        <h5>Tayneks</h5>
+                        <p>Traffic & Safety Signage</p>
+                    </div>
+                </div>
+
+                <!-- placeholders for 2 more -->
+                <div class="company-option" data-company="placeholder1">
+                    <img src="static/product/misc/img1.jpg" alt="Coming Soon">
+                    <div>
+                        <h5>Road Safety</h5>
+                        <p>Signage Printing</p>
+                    </div>
+                </div>
+
+                <div class="company-option" data-company="placeholder2">
+                    <img src="static/product/misc/img2.jpg" alt="Coming Soon">
+                    <div>
+                        <h5>Advertising</h5>
+                        <p>Advertising Boards & Hoardings</p>
+                    </div>
+                </div>
+
             </aside>
 
             <!-- RIGHT -->
             <section class="right-pane">
                 <div class="company-description">
-                    <h3 id="company-name">Tayneks</h3>
-                    <p id="company-desc">Tayneks, founded in 2003 in Turkey, manufactures accessibility and
-                        traffic-safety signage and lighting systems, leveraging over 30 years of industry experience.
-                    </p>
-                    <a id="company-link" href="https://www.tayneks.com/" target="_blank" rel="noopener noreferrer"
+                    <h3 id="company-name">Aceally</h3>
+                    <p id="company-desc">Aceally Group provides end-to-end warehouse racking, shelving, and logistics
+                        storage systems across 100+ countries, with turnkey design and installation services.</p>
+                    <a id="company-link" href="https://www.aceshelving.com/" target="_blank" rel="noopener noreferrer"
                         class="company-link">Visit Website
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                             viewBox="0 0 16 16" style="margin-left:6px;">
@@ -378,17 +401,17 @@
                 </div>
 
                 <div class="products-grid" id="products-grid">
-                    <div class="product-card"><img id="productimage1" src="static/product/Tayneks/logo-2.jpg"
+                    <div class="product-card"><img id="productimage1" src="static/product/Aceally/logo-2.jpg"
                             alt="Product"></div>
-                    <div class="product-card"><img id="productimage2" src="static/product/Tayneks/logo-9.jpg"
+                    <div class="product-card"><img id="productimage2" src="static/product/Aceally/logo-3.jpg"
                             alt="Product"></div>
-                    <div class="product-card"><img id="productimage3" src="static/product/Tayneks/logo-7.jpg"
+                    <div class="product-card"><img id="productimage3" src="static/product/Aceally/logo-1.jpg"
                             alt="Product"></div>
-                    <div class="product-card"><img id="productimage4" src="static/product/Tayneks/logo-4.jpg"
+                    <div class="product-card"><img id="productimage4" src="static/product/Aceally/logo-4.jpg"
                             alt="Product"></div>
-                    <div class="product-card"><img id="productimage5" src="static/product/Tayneks/logo-5.jpg"
+                    <div class="product-card"><img id="productimage5" src="static/product/Aceally/logo-5.jpg"
                             alt="Product"></div>
-                    <div class="product-card"><img id="productimage6" src="static/product/Tayneks/logo-6.jpg"
+                    <div class="product-card"><img id="productimage6" src="static/product/Aceally/logo-6.jpg"
                             alt="Product"></div>
                 </div>
             </section>
@@ -404,24 +427,6 @@
 
     <script>
         const companies = {
-            tayneks: {
-                name: "Tayneks",
-                desc: "Tayneks, founded in 2003 in Turkey, manufactures accessibility and traffic-safety signage and lighting systems, leveraging over 30 years of experience.",
-                link: "https://www.tayneks.com/",
-                productimages: ["static/product/Tayneks/logo-2.jpg", "static/product/Tayneks/logo-9.jpg",
-                    "static/product/Tayneks/logo-7.jpg", "static/product/Tayneks/logo-4.jpg",
-                    "static/product/Tayneks/logo-5.jpg", "static/product/Tayneks/logo-6.jpg"
-                ]
-            },
-            index: {
-                name: "Index Braille",
-                desc: "Index Braille, founded in Sweden in 1979, is a global leader in braille embosser production, offering reliable embossers for personal, educational, and industrial use.",
-                link: "https://www.indexbraille.com/",
-                productimages: ["static/product/Index Braille/logo-1.jpg", "static/product/Index Braille/logo-3.jpg",
-                    "static/product/Index Braille/logo-4.jpg", "static/product/Index Braille/logo-4.jpg",
-                    "static/product/Index Braille/logo-5.jpg", "static/product/Index Braille/logo-6.jpg"
-                ]
-            },
             aceally: {
                 name: "Aceally",
                 desc: "Aceally Group provides end-to-end warehouse racking, shelving, and logistics storage systems across 100+ countries, with turnkey design and installation services.",
@@ -431,13 +436,21 @@
                     "static/product/Aceally/logo-5.jpg", "static/product/Aceally/logo-6.jpg"
                 ]
             },
+            braillo: {
+                name: "Braillo",
+                desc: "Founded in Norway in 1980, Braillo manufactures industrial-grade braille embossers, serving governments and institutions with high-speed production equipment.",
+                link: "https://braillo.com/",
+                productimages: ["static/product/Braillo Norway/logo-3.jpg", "static/product/Braillo Norway/logo-8.jpg",
+                    "static/product/Braillo Norway/logo-7.jpg", "static/product/Braillo Norway/logo-4.jpg",
+                    "static/product/Braillo Norway/logo-5.jpg", "static/product/Braillo Norway/logo-6.jpg"
+                ]
+            },
             perkins: {
                 name: "Perkins Brailler",
                 desc: "The Perkins Brailler, designed by Perkins School for the Blind, is the world's most widely used mechanical braille writer, trusted for education and durability since 1951.",
                 link: "https://brailler.perkins.org/",
                 productimages: ["static/product/Perkins/logo-2.jpg", "static/product/Perkins/logo-3.jpg",
-                    "static/product/Perkins/logo-4.jpg", "static/product/Perkins/logo-4.jpg",
-                    "static/product/Perkins/logo-5.jpg", "static/product/Perkins/logo-6.jpg"
+                    "static/product/Perkins/logo-4.jpg", "static/product/Perkins/logo-5.jpg"
                 ]
             },
             humanware: {
@@ -449,14 +462,35 @@
                     "static/product/Humanware/logo-5.jpg", "static/product/Humanware/logo-6.jpg"
                 ]
             },
-            braillo: {
-                name: "Braillo",
-                desc: "Founded in Norway in 1980, Braillo manufactures industrial-grade braille embossers, serving governments and institutions with high-speed production equipment.",
-                link: "https://braillo.com/",
-                productimages: ["static/product/Braillo Norway/logo-3.jpg", "static/product/Braillo Norway/logo-8.jpg",
-                    "static/product/Braillo Norway/logo-7.jpg", "static/product/Braillo Norway/logo-4.jpg",
-                    "static/product/Braillo Norway/logo-5.jpg", "static/product/Braillo Norway/logo-6.jpg"
+            index: {
+                name: "Index Braille",
+                desc: "Index Braille, founded in Sweden in 1979, is a global leader in braille embosser production, offering reliable embossers for personal, educational, and industrial use.",
+                link: "https://www.indexbraille.com/",
+                productimages: ["static/product/Index Braille/logo-1.jpg", "static/product/Index Braille/logo-3.jpg",
+                    "static/product/Index Braille/logo-7.jpg", "static/product/Index Braille/logo-4.jpg",
+                    "static/product/Index Braille/logo-5.jpg", "static/product/Index Braille/logo-6.jpg"
                 ]
+            },
+            tayneks: {
+                name: "Tayneks",
+                desc: "Tayneks, founded in 2003 in Turkey, manufactures accessibility and traffic-safety signage and lighting systems, leveraging over 30 years of experience.",
+                link: "https://www.tayneks.com/",
+                productimages: ["static/product/Tayneks/logo-2.jpg", "static/product/Tayneks/logo-9.jpg",
+                    "static/product/Tayneks/logo-7.jpg", "static/product/Tayneks/logo-4.jpg",
+                    "static/product/Tayneks/logo-5.jpg", "static/product/Tayneks/logo-6.jpg"
+                ]
+            },
+            placeholder1: {
+                name: "Road Safety",
+                desc: "Professional road signage and reflective board printing solutions for safety and navigation systems.",
+                link: "#",
+                productimages: ["static/images/ss3.png"]
+            },
+            placeholder2: {
+                name: "Advertising",
+                desc: "Custom-designed advertising boards and hoardings for both indoor and outdoor displays.",
+                link: "#",
+                productimages: ["static/product/misc/img2.jpg"]
             }
         };
 
@@ -476,18 +510,52 @@
                 options.forEach(o => o.classList.remove('active'));
                 option.classList.add('active');
                 const company = companies[option.dataset.company];
+                if (!company) return;
                 companyNameEl.textContent = company.name;
                 companyDescEl.textContent = company.desc;
                 companyLinkEl.href = company.link;
+
+                // reset visibility
+                [productimage1, productimage2, productimage3, productimage4, productimage5, productimage6]
+                    .forEach(img => img.parentElement.style.display = 'block');
+
+                document.getElementById("company-link").style.display = "block";
+
+                // handle single image case
+                if (company.productimages.length === 1) {
+                    productimage1.src = company.productimages[0];
+                    productimage1.style.width = '100%';
+                    productimage1.style.height = 'auto';
+                    document.getElementById("company-link").style.display = "none";
+                    productimage2.parentElement.style.display = 'none';
+                    productimage3.parentElement.style.display = 'none';
+                    productimage4.parentElement.style.display = 'none';
+                    productimage5.parentElement.style.display = 'none';
+                    productimage6.parentElement.style.display = 'none';
+                    return;
+                }
+
+                // normal multi-image handling
                 productimage1.src = company.productimages[0];
                 productimage2.src = company.productimages[1];
                 productimage3.src = company.productimages[2];
                 productimage4.src = company.productimages[3];
+
+                if (company.productimages.length != 6) {
+                    productimage5.parentElement.style.display = 'none';
+                    productimage6.parentElement.style.display = 'none';
+                } else {
+                    productimage5.parentElement.style.display = 'block';
+                    productimage6.parentElement.style.display = 'block';
+                }
+
                 productimage5.src = company.productimages[4];
                 productimage6.src = company.productimages[5];
             });
         });
     </script>
+
+
 
 </body>
 
