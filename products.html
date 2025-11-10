@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NYPD General Trading — Products</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #071e40;
+      --navy-2: #0e3760;
+      --accent: #0d6efd;
+      --muted: #6c757d;
+      --bg: #ffffff;
+      --text: #0b2545;
+      --card-bg: #f8fbff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ---------- Header (copied from main site) ---------- */
+    .site-header {
+      border-bottom: 1px solid rgba(11, 37, 69, 0.06);
+      background: linear-gradient(180deg, rgba(11, 37, 69, 0.02), transparent);
+    }
+
+    .site-logo-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0;
+      background-color: var(--navy);
+    }
+
+    .site-logo-line .container { position: relative; }
+
+    .site-logo-line img {
+      position: absolute;
+      left: 1rem;
+      height: 64px;
+      width: auto;
+      border-radius: 10px;
+    }
+
+    .site-logo {
+      font-weight: 700;
+      color: var(--card-bg);
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    .site-nav-line { background-color: var(--navy); }
+
+    .navbar-nav .nav-link {
+      color: var(--card-bg);
+      font-weight: 600;
+      padding: .5rem 1rem;
+    }
+
+    /* ---------- Full-screen main layout ---------- */
+    header.sticky-top { z-index: 1030; }
+
+    main.app-shell {
+      height: calc(100vh - 128px); /* header lines + footer reserve; tuned below with media queries */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    /* centered content wrapper to keep left + right panels centered on the page */
+    .content-wrapper {
+      display: flex;
+      gap: 2.5rem;
+      width: 100%;
+      max-width: 1300px; /* controls how wide the centered layout becomes on big screens */
+      margin: 0 auto;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    /* Left pane - centered (not flush left) */
+    .left-pane {
+      flex: 0 0 360px; /* enlarged left panel */
+      max-width: 38%;
+      background: linear-gradient(180deg, var(--card-bg), #fff);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 30px rgba(11,37,69,0.06);
+      border: 1px solid rgba(11,37,69,0.06);
+      overflow-y: auto;
+      align-self: center;
+    }
+
+    .left-pane .panel-title {
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+
+    .company-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      margin-bottom: .75rem;
+      background: #fff;
+      border: 1px solid rgba(11,37,69,0.04);
+    }
+
+    .company-option img {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .company-option .company-meta h5 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .company-option .company-meta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .company-option:hover {
+      transform: translateX(6px);
+      box-shadow: 0 8px 22px rgba(11,37,69,0.06);
+    }
+
+    .company-option.active {
+      background: linear-gradient(90deg,var(--accent), #0b63e6);
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 30px rgba(13,110,253,0.12);
+    }
+    .company-option.active img { filter: brightness(.95) saturate(.9); }
+
+    /* Right pane - centered content area */
+    .right-pane {
+      flex: 1 1 680px;
+      max-width: 62%;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(11,37,69,0.04);
+      overflow-y: auto;
+      align-self: center;
+    }
+
+    .company-description h3 {
+      margin-top: 0;
+      color: var(--navy);
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .company-description p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Larger product cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .product-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(11,37,69,0.04);
+      background: #f8fbff;
+      transition: transform .18s ease, box-shadow .18s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card .product-meta {
+      padding: .9rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-card .product-meta h6 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(11,37,69,0.08);
+    }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--navy);
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    /* Scrollbars subtle */
+    .left-pane::-webkit-scrollbar, .right-pane::-webkit-scrollbar {
+      width: 10px;
+    }
+    .left-pane::-webkit-scrollbar-thumb, .right-pane::-webkit-scrollbar-thumb {
+      background: rgba(11,37,69,0.08);
+      border-radius: 6px;
+    }
+
+    /* ---------- Responsive rules ---------- */
+    @media (max-width: 1199px) {
+      .left-pane { flex: 0 0 340px; max-width: 40%; }
+      .right-pane { max-width: 60%; padding: 1.5rem; }
+      .product-card img { height: 220px; }
+    }
+
+    @media (max-width: 991px) {
+      /* Stack vertically for mobile but remain centered and full-width */
+      main.app-shell { height: auto; padding: 1rem 0 4rem 0; }
+      .content-wrapper { flex-direction: column; gap: 1rem; max-width: 980px; padding: 0 1rem; }
+      .left-pane { width: 100%; max-width: none; flex: none; border-radius: 12px; display: flex; gap: .75rem; overflow-x: auto; padding: .75rem; }
+      .company-option { flex-direction: column; min-width: 140px; width: 140px; align-items: center; text-align: center; margin-bottom: 0; }
+      .company-option img { width: 80px; height: 80px; }
+      .right-pane { width: 100%; max-width: none; padding: 1rem; border-radius: 12px; }
+      .product-card img { height: 200px; }
+    }
+
+    @media (max-height: 700px) {
+      /* Make sure content fits in shorter viewports */
+      main.app-shell { height: auto; padding-bottom: 3rem; }
+    }
+
+    /* small accessibility focus */
+    .company-option:focus { outline: 3px solid rgba(13,110,253,0.18); outline-offset: 2px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (same navbar + logo as main site) -->
+  <header class="site-header sticky-top">
+    <div class="site-logo-line py-2">
+      <div class="container">
+        <img src="static/docs/logo-3.jpg" alt="NYPD General Trading Logo">
+        <div class="text-center site-logo">NYPD General Trading</div>
+      </div>
+    </div>
+
+    <div class="site-nav-line">
+      <nav class="navbar navbar-expand-lg navbar-dark py-2">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavProd">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-center" id="mainNavProd">
+            <ul class="navbar-nav gap-4">
+              <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2 text-white" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2 text-white active" href="/products.html">Products</a></li>
+              <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2 text-white" href="#site-footer">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN (full-screen centered layout) -->
+  <main class="app-shell" role="main" aria-label="Products area">
+    <div class="content-wrapper">
+
+      <!-- LEFT PANE (centered left panel) -->
+      <aside class="left-pane" aria-label="Company list">
+        <div class="panel-title">Partners</div>
+
+        <div class="company-option active" tabindex="0" data-company="aceally">
+          <img src="static/docs/logo-5.jpg" alt="Aceally">
+          <div class="company-meta">
+            <h5>Aceally</h5>
+            <p>Warehouse Racking Systems</p>
+          </div>
+        </div>
+
+        <div class="company-option" tabindex="0" data-company="braillo">
+          <img src="static/docs/logo-6.jpg" alt="Braillo">
+          <div class="company-meta">
+            <h5>Braillo</h5>
+            <p>Braille Printers & Embossers</p>
+          </div>
+        </div>
+
+        <div class="company-option" tabindex="0" data-company="signtech">
+          <img src="static/docs/logo-9.jpg" alt="SignTech">
+          <div class="company-meta">
+            <h5>SignTech</h5>
+            <p>Printed Signage Solutions</p>
+          </div>
+        </div>
+
+        <div class="company-option" tabindex="0" data-company="alphatech">
+          <img src="static/docs/logo-10.jpg" alt="AlphaTech">
+          <div class="company-meta">
+            <h5>AlphaTech</h5>
+            <p>Industrial Products & Tools</p>
+          </div>
+        </div>
+
+        <div class="company-option" tabindex="0" data-company="omnisafe">
+          <img src="static/docs/logo-12.jpg" alt="OmniSafe">
+          <div class="company-meta">
+            <h5>OmniSafe</h5>
+            <p>Safety & Access Equipment</p>
+          </div>
+        </div>
+
+        <div class="company-option" tabindex="0" data-company="cleanco">
+          <img src="static/docs/logo-13.jpg" alt="CleanCo">
+          <div class="company-meta">
+            <h5>CleanCo</h5>
+            <p>Hygiene & Cleaning Solutions</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT PANE (centered right panel) -->
+      <section class="right-pane" aria-live="polite">
+        <div class="company-description">
+          <h3 id="company-name">Aceally</h3>
+          <p id="company-desc">Aceally is one of NYPD General Trading’s premier partners specializing in warehouse racking and industrial storage solutions that optimize space and improve efficiency.</p>
+        </div>
+
+        <div class="products-grid" id="products-grid" aria-label="Products grid">
+          <!-- 6 placeholder product cards -->
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 1">
+            <div class="product-meta"><h6>Product 1</h6></div>
+          </div>
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 2">
+            <div class="product-meta"><h6>Product 2</h6></div>
+          </div>
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 3">
+            <div class="product-meta"><h6>Product 3</h6></div>
+          </div>
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 4">
+            <div class="product-meta"><h6>Product 4</h6></div>
+          </div>
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 5">
+            <div class="product-meta"><h6>Product 5</h6></div>
+          </div>
+          <div class="product-card">
+            <img src="static/images/ss6.png" alt="Product 6">
+            <div class="product-meta"><h6>Product 6</h6></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER (same style) -->
+  <footer id="site-footer" class="site-footer">
+    © 2025 NYPD GENERAL TRADING — All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // company data
+    const companies = {
+      aceally: {
+        name: "Aceally",
+        desc: "Aceally is one of NYPD General Trading’s premier partners specializing in warehouse racking and industrial storage solutions that optimize space and improve efficiency."
+      },
+      braillo: {
+        name: "Braillo",
+        desc: "Braillo provides world-class Braille embossers and accessibility printing solutions from Norway, ensuring inclusivity and precision."
+      },
+      signtech: {
+        name: "SignTech",
+        desc: "SignTech delivers printed signage and visual communication solutions for both public and private sectors across Bahrain."
+      },
+      alphatech: {
+        name: "AlphaTech",
+        desc: "AlphaTech focuses on industrial-grade tools, electrical products, and safety equipment for professional use."
+      },
+      omnisafe: {
+        name: "OmniSafe",
+        desc: "OmniSafe specializes in protective gear and accessibility equipment designed for workplace safety and compliance."
+      },
+      cleanco: {
+        name: "CleanCo",
+        desc: "CleanCo offers a comprehensive range of cleaning and sanitation products tailored for both industrial and commercial use."
+      }
+    };
+
+    // DOM elements
+    const options = document.querySelectorAll('.company-option');
+    const companyNameEl = document.getElementById('company-name');
+    const companyDescEl = document.getElementById('company-desc');
+    const productsGrid = document.getElementById('products-grid');
+
+    // helper: show placeholder products (6)
+    function renderProductsFor(companyKey) {
+      // For now we use the same 6 placeholders. If you later want per-company images,
+      // replace the src values or pass an array.
+      productsGrid.innerHTML = '';
+      for (let i = 1; i <= 6; i++) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="static/images/ss6.png" alt="Product ${i}">
+          <div class="product-meta"><h6>Product ${i}</h6></div>
+        `;
+        productsGrid.appendChild(card);
+      }
+      // small fade effect
+      productsGrid.style.opacity = 0;
+      requestAnimationFrame(() => {
+        productsGrid.style.transition = 'opacity .28s ease';
+        productsGrid.style.opacity = 1;
+      });
+    }
+
+    // click + keyboard handlers
+    options.forEach(opt => {
+      opt.addEventListener('click', () => selectCompany(opt));
+      opt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCompany(opt); }
+      });
+    });
+
+    function selectCompany(opt) {
+      options.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+
+      const key = opt.dataset.company;
+      const info = companies[key] || { name: 'Company', desc: '' };
+      companyNameEl.textContent = info.name;
+      companyDescEl.textContent = info.desc;
+
+      renderProductsFor(key);
+
+      // ensure right pane scrolls to top on change (nice UX)
+      document.querySelector('.right-pane').scrollTop = 0;
+    }
+
+    // initial render
+    renderProductsFor('aceally');
+
+    // ensure content uses full height on load/resize for very small viewports
+    function adjustMainHeight() {
+      const headerHeight = document.querySelector('.site-header').offsetHeight;
+      const footerHeight = document.querySelector('.site-footer').offsetHeight;
+      const available = window.innerHeight - headerHeight - footerHeight - 32; // some breathing room
+      const main = document.querySelector('main.app-shell');
+      if (available > 300) main.style.height = available + 'px';
+      else main.style.height = 'auto';
+    }
+    window.addEventListener('resize', adjustMainHeight);
+    adjustMainHeight();
+  </script>
+</body>
+</html>
