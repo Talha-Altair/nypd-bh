@@ -222,8 +222,10 @@
 
         .product-card img {
             width: 100%;
+            max-width: 300px;
             height: 240px;
             object-fit: cover;
+            border-radius: 6px;
         }
 
         .product-card:hover {
@@ -484,13 +486,13 @@
                 name: "Road Safety",
                 desc: "Professional road signage and reflective board printing solutions for safety and navigation systems.",
                 link: "#",
-                productimages: ["static/images/ss3.png"]
+                productimages: ["static/images/ss3.png", "static/product/misc/img3.png", "static/product/misc/img4.png", "static/product/misc/img7.png", "static/product/misc/img10.jpg"]
             },
             placeholder2: {
                 name: "Advertising",
                 desc: "Custom-designed advertising boards and hoardings for both indoor and outdoor displays.",
                 link: "#",
-                productimages: ["static/product/misc/img2.jpg"]
+                productimages: ["static/product/misc/img2.jpg", "static/product/misc/img8.png", "static/product/misc/img5.png", "static/product/misc/img6.png", "static/product/misc/img9.jpg"]
             }
         };
 
@@ -498,59 +500,57 @@
         const companyNameEl = document.getElementById('company-name');
         const companyDescEl = document.getElementById('company-desc');
         const companyLinkEl = document.getElementById('company-link');
-        const productimage1 = document.getElementById('productimage1');
-        const productimage2 = document.getElementById('productimage2');
-        const productimage3 = document.getElementById('productimage3');
-        const productimage4 = document.getElementById('productimage4');
-        const productimage5 = document.getElementById('productimage5');
-        const productimage6 = document.getElementById('productimage6');
+
+        // store image element references dynamically
+        const productImages = [
+            document.getElementById('productimage1'),
+            document.getElementById('productimage2'),
+            document.getElementById('productimage3'),
+            document.getElementById('productimage4'),
+            document.getElementById('productimage5'),
+            document.getElementById('productimage6')
+        ];
 
         options.forEach(option => {
             option.addEventListener('click', () => {
+                // Highlight selected
                 options.forEach(o => o.classList.remove('active'));
                 option.classList.add('active');
+
                 const company = companies[option.dataset.company];
                 if (!company) return;
+
+                // Update text info
                 companyNameEl.textContent = company.name;
                 companyDescEl.textContent = company.desc;
                 companyLinkEl.href = company.link;
 
-                // reset visibility
-                [productimage1, productimage2, productimage3, productimage4, productimage5, productimage6]
-                    .forEach(img => img.parentElement.style.display = 'block');
+                // Reset visibility
+                productImages.forEach(img => {
+                    img.parentElement.style.display = 'none';
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                });
 
-                document.getElementById("company-link").style.display = "block";
-
-                // handle single image case
-                if (company.productimages.length === 1) {
-                    productimage1.src = company.productimages[0];
-                    productimage1.style.width = '100%';
-                    productimage1.style.height = 'auto';
-                    document.getElementById("company-link").style.display = "none";
-                    productimage2.parentElement.style.display = 'none';
-                    productimage3.parentElement.style.display = 'none';
-                    productimage4.parentElement.style.display = 'none';
-                    productimage5.parentElement.style.display = 'none';
-                    productimage6.parentElement.style.display = 'none';
+                // handle 0-image fallback
+                if (!company.productimages || company.productimages.length === 0) {
+                    companyLinkEl.style.display = 'none';
                     return;
                 }
 
-                // normal multi-image handling
-                productimage1.src = company.productimages[0];
-                productimage2.src = company.productimages[1];
-                productimage3.src = company.productimages[2];
-                productimage4.src = company.productimages[3];
+                // Show link unless it's a single placeholder image
+                companyLinkEl.style.display = company.link != "#" ? 'block' : 'none';
 
-                if (company.productimages.length != 6) {
-                    productimage5.parentElement.style.display = 'none';
-                    productimage6.parentElement.style.display = 'none';
-                } else {
-                    productimage5.parentElement.style.display = 'block';
-                    productimage6.parentElement.style.display = 'block';
-                }
-
-                productimage5.src = company.productimages[4];
-                productimage6.src = company.productimages[5];
+                // Loop through however many images are available
+                company.productimages.forEach((src, i) => {
+                    if (productImages[i]) {
+                        productImages[i].src = src;
+                        productImages[i].parentElement.style.display = 'block';
+                    } else {
+                        // if more than 6 images exist, optionally handle overflow here
+                        console.warn(`Extra image ignored: ${src}`);
+                    }
+                });
             });
         });
     </script>
