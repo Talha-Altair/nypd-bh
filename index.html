@@ -113,117 +113,6 @@
             color: var(--accent);
         }
 
-        /* Hero container */
-        .hero {
-            width: 100%;
-            aspect-ratio: 4 / 1;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Image wrapper */
-        .hero-images {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Each image fills its portion */
-        .hero-img {
-            flex: 1;
-            /* base width for left and right images */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        /* Middle image gets more width */
-        .hero-img-center {
-            flex: 1.5;
-            /* adjust this for how wide you want it */
-        }
-
-        /* Optional: smooth balance on image edges */
-        .hero-img:first-child {
-            background-position: right center;
-        }
-
-        .hero-img:last-child {
-            background-position: left center;
-        }
-
-        /* Overlay */
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            z-index: 1;
-        }
-
-        /* Hero content positioning */
-        .hero-content {
-            position: absolute;
-            top: 8%;
-            /* moves it toward the top */
-            left: 50%;
-            transform: translateX(-50%);
-            /* keeps horizontal centering only */
-            text-align: center;
-            z-index: 2;
-        }
-
-        /* ----------------------------- */
-        /* MOBILE VIEW ADJUSTMENTS */
-        /* ----------------------------- */
-        @media (max-width: 768px) {
-            .hero {
-                aspect-ratio: 2 / 1;
-                /* a bit taller for mobile */
-                flex-direction: column;
-            }
-
-            .hero-images {
-                display: block;
-                width: 100%;
-                height: auto;
-            }
-
-            /* Only show the center image on mobile */
-            .hero-img {
-                display: none;
-            }
-
-            .hero-img-center {
-                display: block;
-                width: 100%;
-                aspect-ratio: 2 / 1;
-                background-position: center;
-            }
-
-            /* Remove overlay and put text below image */
-            .hero-overlay {
-                display: none;
-            }
-
-            .hero-content {
-                position: static;
-                transform: none;
-                color: #000;
-                background: #fff;
-                padding: 1.5rem 1rem;
-                text-align: center;
-            }
-
-            .hero-content h1,
-            .hero-content p {
-                color: #000;
-                /* ensures readability */
-            }
-        }
-
 
 
         /* subtle panning animation */
@@ -388,10 +277,119 @@
                 max-height: 180px;
             }
         }
+
+        /* ----------------------------- */
+        /* HERO BASE STYLES */
+        /* ----------------------------- */
+        .hero {
+            width: 100%;
+            aspect-ratio: 4 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Slider container */
+        .hero-slider {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        /* Each slide */
+        .hero-slide {
+            flex: 0 0 33.333%;
+            /* Show 3 at a time */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Text content */
+        .hero-content {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* ----------------------------- */
+        /* MOBILE VIEW */
+        /* ----------------------------- */
+        @media (max-width: 768px) {
+            .hero {
+                aspect-ratio: 2 / 1;
+            }
+
+            .hero-slide {
+                flex: 0 0 100%;
+            }
+
+            .hero-content {
+                position: static;
+                transform: none;
+                color: #000;
+                background: #fff;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-overlay {
+                display: none;
+            }
+
+            .hero-content h1,
+            .hero-content p {
+                color: #000;
+            }
+        }
+
+        /* ----------------------------- */
+        /* OPTIONAL BUTTON CONTROLS */
+        /* ----------------------------- */
+        .hero-controls {
+            position: absolute;
+            width: 100%;
+            top: 45%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 3;
+        }
+
+        .hero-btn {
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
     </style>
+
 </head>
 
+
+
 <body>
+
+
 
     <!-- HEADER -->
     <header class="site-header">
@@ -438,17 +436,27 @@
 
 
 
-
-    <section class="hero" role="img" aria-label="Hero image">
+    <section class="hero" aria-label="Hero image carousel">
         <div class="hero-overlay"></div>
-        <div class="hero-images">
-            <div class="hero-img" style="background-image: url('static/docs/logo-hero-1.jpg');"></div>
-            <div class="hero-img hero-img-center" style="background-image: url('static/docs/logo-hero-3.jpg');"></div>
-            <div class="hero-img" style="background-image: url('static/docs/logo-hero-2.jpg');"></div>
+
+        <div class="hero-slider" id="heroSlider">
+            <!-- <div class="hero-slide" style="background-image: url('static/docs/logo-hero-1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('static/docs/logo-hero-2.jpg');"></div> -->
+
+            <div class="hero-slide" style="background-image: url('static/product/misc/imp1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('static/product/misc/imp2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('static/docs/logo-hero-2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('static/product/misc/imp3.jpg');"></div>
         </div>
+
         <div class="hero-content container">
             <h1 class="display-5" style="color: whitesmoke;">Welcome to NYPD General Trading</h1>
-            <p class="lead " style="color: white;">Bahrain's Leading Industrial & Consumer Products Entreprise</p>
+            <p class="lead" style="color: white;">Bahrain's Leading Industrial & Consumer Products Enterprise</p>
+        </div>
+
+        <div class="hero-controls">
+            <button class="hero-btn" id="prevBtn">&#10094;</button>
+            <button class="hero-btn" id="nextBtn">&#10095;</button>
         </div>
     </section>
 
@@ -459,18 +467,16 @@
     <main class="container">
         <!-- Feature 1: text left, image right -->
 
-
-        <!-- Feature 2: image left, text right -->
         <section class="feature row gx-5 my-5 align-items-center">
             <div class="col-lg-6 order-lg-1 order-2">
-                <div class="feature-img-main" style="background-image: url(static/images/ss3.png);">
+                <div class="feature-img-main" style="background-image: url(static/images/ss8.png);">
                 </div>
                 <!-- <div class="feature-img-landscape"></div> -->
             </div>
             <div class="col-lg-6 order-lg-2 order-1">
-                <h2>Printed Signage</h2>
-                <p class="text-muted">Official Signage for the Kingdom of Bahrain brought by NYPD</p>
-                <a class="btn btn-primary btn-rounded" href="/products.html" role="button">Know More</a>
+                <h2>Accessbility Production</h2>
+                <p class="text-muted">Braille Embossing & Accessbility products partnered with Braillo (Norway).</p>
+                <a class="btn btn-primary btn-rounded" href="#site-footer" role="button">Get in Touch</a>
             </div>
         </section>
 
@@ -487,18 +493,24 @@
             </div>
         </section>
 
+
+        <!-- Feature 2: image left, text right -->
         <section class="feature row gx-5 my-5 align-items-center">
             <div class="col-lg-6 order-lg-1 order-2">
-                <div class="feature-img-main" style="background-image: url(static/images/ss8.png);">
+                <div class="feature-img-main" style="background-image: url(static/images/ss3.png);">
                 </div>
                 <!-- <div class="feature-img-landscape"></div> -->
             </div>
             <div class="col-lg-6 order-lg-2 order-1">
-                <h2>Accessbility Production</h2>
-                <p class="text-muted">Braille Embossing & Accessbility products partnered with Braillo (Norway).</p>
-                <a class="btn btn-primary btn-rounded" href="#site-footer" role="button">Get in Touch</a>
+                <h2>Signages</h2>
+                <p class="text-muted">Official Signage for the Kingdom of Bahrain brought by NYPD</p>
+                <a class="btn btn-primary btn-rounded" href="/products.html" role="button">Know More</a>
             </div>
         </section>
+
+
+
+
     </main>
 
     <!-- Partners: 8 cards -->
@@ -611,6 +623,60 @@
 
     <!-- Bootstrap JS (for navbar collapse functionality) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const slider = document.getElementById("heroSlider");
+        const slides = document.querySelectorAll(".hero-slide");
+        const totalSlides = slides.length;
+        const visibleSlides = 3;
+        let index = 0;
+
+        // Clone first few slides to make loop seamless
+        for (let i = 0; i < visibleSlides; i++) {
+            const clone = slides[i].cloneNode(true);
+            slider.appendChild(clone);
+        }
+
+        // Function to slide
+        function moveSlide() {
+            slider.style.transition = "transform 1s ease-in-out";
+            slider.style.transform = `translateX(-${(100 / visibleSlides) * index}%)`;
+
+            // Reset when reaching end
+            if (index >= totalSlides) {
+                setTimeout(() => {
+                    slider.style.transition = "none";
+                    slider.style.transform = "translateX(0)";
+                    index = 0;
+                }, 1000);
+            }
+        }
+
+        // Auto-slide every 3 seconds
+        let autoSlide = setInterval(() => {
+            index++;
+            moveSlide();
+        }, 3000);
+
+        // Pause on hover
+        slider.addEventListener("mouseenter", () => clearInterval(autoSlide));
+        slider.addEventListener("mouseleave", () => {
+            autoSlide = setInterval(() => {
+                index++;
+                moveSlide();
+            }, 3000);
+        });
+
+        // Manual buttons
+        document.getElementById("nextBtn").addEventListener("click", () => {
+            index++;
+            moveSlide();
+        });
+        document.getElementById("prevBtn").addEventListener("click", () => {
+            index = index <= 0 ? totalSlides - 1 : index - 1;
+            moveSlide();
+        });
+    </script>
 
 
 </body>
