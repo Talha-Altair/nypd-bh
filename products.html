@@ -317,16 +317,16 @@
             <aside class="left-pane">
                 <div class="panel-title">Partners</div>
 
-                <div class="company-option active" data-company="aceally"><img src="static/product/Aceally/logo-7.jpg"
-                        alt="Aceally">
+                <div class="company-option active" data-company="aceally" data-click-id="aceally"><img
+                        src="static/product/Aceally/logo-7.jpg" alt="Aceally">
                     <div>
                         <h5>Aceally</h5>
                         <p>Warehouse Racking Systems</p>
                     </div>
                 </div>
 
-                <div class="company-option" data-company="braillo"><img src="static/product/Braillo Norway/logo-2.jpg"
-                        alt="Braillo">
+                <div class="company-option" data-company="braillo" data-click-id="accessbility"><img
+                        src="static/product/Braillo Norway/logo-2.jpg" alt="Braillo">
                     <div>
                         <h5>Braillo</h5>
                         <p>Industrial Braille Printers</p>
@@ -366,7 +366,7 @@
                 </div>
 
                 <!-- placeholders for 2 more -->
-                <div class="company-option" data-company="placeholder1">
+                <div class="company-option" data-company="placeholder1" data-click-id="signage">
                     <img src="static/product/misc/img1.jpg" alt="Coming Soon">
                     <div>
                         <h5>Road Safety</h5>
@@ -553,7 +553,28 @@
                 });
             });
         });
+
+
     </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            // Option 1: if you're using ?click=something
+            const params = new URLSearchParams(window.location.search);
+            const clickTarget = params.get("click");
+
+            // Option 2: if you're using #click=something
+            // const clickTarget = window.location.hash.split('=')[1];
+
+            if (clickTarget) {
+                const element = document.querySelector(`[data-click-id="${clickTarget}"]`);
+                if (element) {
+                    element.click(); // simulate click
+                }
+            }
+        });
+    </script>
+
 
 
 
